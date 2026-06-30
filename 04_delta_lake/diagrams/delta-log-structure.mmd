@@ -1,0 +1,19 @@
+flowchart TB
+    subgraph TableDir["s3://bucket/orders/"]
+        subgraph Log["_delta_log/"]
+            J0["00000000000000000000.json<br/>(create + first add)"]
+            J1["00000000000000000001.json<br/>(append)"]
+            J2["00000000000000000002.json<br/>(delete - remove action)"]
+            CP["00000000000000000010.checkpoint.parquet<br/>(periodic snapshot)"]
+            LC["_last_checkpoint<br/>(pointer)"]
+        end
+        subgraph Data["data files"]
+            P1["part-00000-abc.snappy.parquet"]
+            P2["part-00001-def.snappy.parquet"]
+            P3["part-00002-ghi.snappy.parquet"]
+        end
+    end
+    Reader["Reader"] -->|list _delta_log| Log
+    Reader -->|read latest checkpoint<br/>+ newer JSONs| CP
+    Reader -->|replay actions| Reader
+    Reader -->|read referenced files| Data

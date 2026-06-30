@@ -1,0 +1,23 @@
+flowchart LR
+    subgraph Before["Before OPTIMIZE"]
+        F1["part-001 (5 MB)<br/>user_id: 1..1M (random)"]
+        F2["part-002 (8 MB)<br/>user_id: 1..1M (random)"]
+        F3["part-003 (3 MB)<br/>user_id: 1..1M (random)"]
+        F4["...50,000 more files..."]
+    end
+    subgraph AfterCompact["After OPTIMIZE (compact only)"]
+        G1["part-A (1 GB)<br/>user_id: 1..1M (random)"]
+        G2["part-B (1 GB)<br/>user_id: 1..1M (random)"]
+        G3["part-C (1 GB)<br/>user_id: 1..1M (random)"]
+    end
+    subgraph AfterZOrder["After OPTIMIZE ZORDER BY (user_id)"]
+        H1["part-A (1 GB)<br/>user_id: 1..333K"]
+        H2["part-B (1 GB)<br/>user_id: 333K..666K"]
+        H3["part-C (1 GB)<br/>user_id: 666K..1M"]
+    end
+    Before -->|OPTIMIZE| AfterCompact
+    AfterCompact -->|OPTIMIZE ZORDER BY user_id| AfterZOrder
+    Q["WHERE user_id = 500000<br/>reads:"]
+    Q -->|all 50K files| Before
+    Q -->|all 3 files| AfterCompact
+    Q -->|1 file - data skip!| AfterZOrder

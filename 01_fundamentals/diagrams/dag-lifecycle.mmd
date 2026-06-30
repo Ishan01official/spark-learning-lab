@@ -1,0 +1,19 @@
+flowchart TB
+    Code["PySpark code<br/>(transformations + action)"]
+    LP["Unresolved Logical Plan<br/>(parse only)"]
+    RLP["Resolved Logical Plan<br/>(schema + name resolution)"]
+    OLP["Optimized Logical Plan<br/>(Catalyst rules: predicate pushdown, projection prune, constant fold)"]
+    PP["Physical Plans<br/>(candidates with strategies)"]
+    SP["Selected Physical Plan<br/>(cost-based pick)"]
+    RDD["RDD DAG<br/>(stages + tasks)"]
+    Exec["Executors<br/>(run tasks per partition)"]
+
+    Code --> LP --> RLP --> OLP --> PP --> SP --> RDD --> Exec
+
+    style LP fill:#fef3c7
+    style RLP fill:#fef3c7
+    style OLP fill:#fde68a
+    style PP fill:#bfdbfe
+    style SP fill:#93c5fd
+    style RDD fill:#86efac
+    style Exec fill:#10b981,color:#fff

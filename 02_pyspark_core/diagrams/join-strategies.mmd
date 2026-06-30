@@ -1,0 +1,20 @@
+flowchart TD
+    Start["df_a.join(df_b, key)"]
+    Start --> Q1{"Is one side<br/>< autoBroadcastJoinThreshold<br/>(default 10MB)?"}
+
+    Q1 -- "yes" --> BHJ["**Broadcast Hash Join (BHJ)**<br/><br/>1. Small side collected to driver<br/>2. Broadcast to every executor<br/>3. Each executor builds hash map<br/>4. Probe with big-side partitions<br/><br/>**No shuffle. Fastest.**"]
+
+    Q1 -- "no" --> Q2{"Equi-join<br/>(key = key)?"}
+
+    Q2 -- "no" --> BNLJ["**Broadcast Nested Loop<br/>or Cartesian**<br/><br/>O(N × M). Slow.<br/>Usually a modeling bug."]
+
+    Q2 -- "yes" --> Q3{"AQE enabled and<br/>one side small per partition?"}
+
+    Q3 -- "yes" --> SHJ["**Shuffle Hash Join (SHJ)**<br/><br/>1. Both sides shuffled by key<br/>2. Smaller side built as hash map<br/>per partition<br/>3. Larger side probes it<br/><br/>One shuffle, no sort."]
+
+    Q3 -- "no" --> SMJ["**Sort-Merge Join (SMJ)**<br/><br/>1. Both sides shuffled by key<br/>2. Both sides sorted in each partition<br/>3. Merge in one sequential pass<br/><br/>Two shuffles + two sorts.<br/>Default for big × big."]
+
+    style BHJ fill:#86efac
+    style SHJ fill:#fde68a
+    style SMJ fill:#bfdbfe
+    style BNLJ fill:#fecaca

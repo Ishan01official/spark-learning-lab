@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant U as User MERGE
+    participant D as Delta
+    participant F as Storage
+    U->>D: merge(source, "t.id = s.id")
+    D->>F: Scan target with join predicate
+    F-->>D: candidate files (with min/max for skip)
+    D->>D: Join source with candidate files
+    D->>D: Classify rows: matched / not-matched / not-matched-by-source
+    D->>F: Rewrite each affected file with merged rows
+    Note over D,F: Whole files are rewritten,<br/>not individual rows
+    D->>F: Compute (add, remove) action set
+    D->>F: Atomically commit new log entry
+    F-->>U: success<br/>operationMetrics: numUpdated, numInserted, numDeleted

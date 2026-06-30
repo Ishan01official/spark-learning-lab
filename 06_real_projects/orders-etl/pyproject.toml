@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "orders-etl"
+version = "0.1.0"
+description = "Medallion ETL example for the spark-learning-lab"
+requires-python = ">=3.9"
+dependencies = [
+    "pyspark>=3.5,<4.0",
+    "delta-spark>=3.2,<4.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,31 @@
+flowchart LR
+    subgraph Partition["Partition: customer_id = 42 (ordered by ts)"]
+        direction LR
+        R1["Row 1<br/>2024-01-01"]
+        R2["Row 2<br/>2024-01-05"]
+        R3["Row 3<br/>2024-01-10<br/>← currentRow"]
+        R4["Row 4<br/>2024-01-15"]
+        R5["Row 5<br/>2024-01-20"]
+        R1 --- R2 --- R3 --- R4 --- R5
+    end
+
+    subgraph Frame1["rowsBetween(-1, 1) = R2, R3, R4"]
+        direction LR
+        F1a["lag(1)"]
+        F1b["currentRow"]
+        F1c["lead(1)"]
+    end
+
+    subgraph Frame2["rowsBetween(unboundedPreceding, currentRow) = R1..R3 (running total)"]
+        F2[" "]
+    end
+
+    subgraph Frame3["rangeBetween(-7 days, 0) — date-aware, irregular gaps OK"]
+        F3[" "]
+    end
+
+    R3 -.-> F1b
+    R2 -.-> F1a
+    R4 -.-> F1c
+
+    style R3 fill:#fde68a

@@ -1,0 +1,10 @@
+flowchart LR
+    A["DataFrame / SQL"] --> B["Unresolved<br/>Logical Plan"]
+    B -->|analyzer<br/>(catalog lookup,<br/>type check)| C["Resolved<br/>Logical Plan"]
+    C -->|optimizer rules<br/>(pushdown, pruning,<br/>constant folding)| D["Optimized<br/>Logical Plan"]
+    D -->|strategies| E["Physical Plan<br/>candidates"]
+    E -->|cost model| F["Selected<br/>Physical Plan"]
+    F --> G["RDDs / Tasks"]
+    G -->|execution| H["Results"]
+    H -.->|runtime stats| F
+    F -.->|AQE rewrite| D

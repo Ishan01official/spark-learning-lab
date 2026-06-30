@@ -1,0 +1,16 @@
+flowchart TB
+    subgraph Container["Container = executor.memory + memoryOverhead"]
+        subgraph Heap["JVM Heap (spark.executor.memory)"]
+            R["Reserved (~300 MB)"]
+            U["User Memory<br/>(1 - memory.fraction) × usable"]
+            subgraph Unified["Unified Memory (memory.fraction × usable)"]
+                S["Storage<br/>(cached blocks,<br/>broadcasts)"]
+                E["Execution<br/>(shuffle, aggregation,<br/>sort, join hash)"]
+            end
+        end
+        subgraph OffHeap["Off-Heap (memoryOverhead)"]
+            J["JVM overhead<br/>(metaspace, GC)"]
+            P["Python workers<br/>(PySpark!)"]
+            D["Direct buffers<br/>(shuffle network)"]
+        end
+    end

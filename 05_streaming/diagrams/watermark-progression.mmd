@@ -1,0 +1,14 @@
+flowchart TB
+    subgraph Batch1["Batch 1 — max event_time = 10:05"]
+        B1["watermark = 10:05 - 10min = 09:55<br/>events < 09:55 dropped"]
+    end
+    subgraph Batch2["Batch 2 — max event_time = 10:08"]
+        B2["watermark = 09:58<br/>any event from 09:55..09:58 still accepted"]
+    end
+    subgraph Batch3["Batch 3 — event from 10:01 arrives late"]
+        B3["watermark unchanged at 09:58<br/>10:01 > 09:58 -> ACCEPTED"]
+    end
+    subgraph Batch4["Batch 4 — event from 09:50 arrives much later"]
+        B4["watermark advanced to 10:00<br/>09:50 < 10:00 -> DROPPED"]
+    end
+    Batch1 --> Batch2 --> Batch3 --> Batch4

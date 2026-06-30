@@ -1,0 +1,9 @@
+flowchart LR
+    A["Input stream<br/>(unbounded table)"] --> B["Catalyst<br/>(same as batch)"]
+    B --> C["Result table<br/>(unbounded, incremental)"]
+    C --> D["Output mode<br/>(append / update / complete)"]
+    D --> E["Sink<br/>(Delta, Kafka, file, foreachBatch)"]
+    F["Trigger<br/>(when to compute)"] -.-> B
+    G["Watermark<br/>(state bound)"] -.-> B
+    H["Checkpoint<br/>(offsets + state)"] -.-> B
+    H -.-> E

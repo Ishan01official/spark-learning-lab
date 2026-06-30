@@ -1,0 +1,41 @@
+flowchart TD
+    subgraph Languages["Languages"]
+        Py[Python<br/>PySpark]
+        Sc[Scala]
+        Sq[SQL]
+        R[R<br/>SparkR / sparklyr]
+        J[Java]
+    end
+
+    subgraph Libs["High-level libraries"]
+        DF[DataFrame / Dataset API]
+        SQL[Spark SQL + Catalyst]
+        SS[Structured Streaming]
+        ML[MLlib]
+        GR[GraphFrames / GraphX]
+    end
+
+    Core[Spark Core<br/>DAG Scheduler · Task Scheduler · Memory Mgmt · RDDs]
+
+    subgraph CM["Cluster Manager"]
+        Local
+        Standalone
+        YARN
+        K8s[Kubernetes]
+        DBR[Databricks-internal]
+    end
+
+    subgraph Store["Storage (Spark is just compute)"]
+        S3
+        HDFS
+        ADLS
+        GCS
+        Kafka
+        JDBC
+        Delta[Delta / Iceberg / Hudi]
+    end
+
+    Languages --> Libs
+    Libs --> Core
+    Core --> CM
+    CM --> Store

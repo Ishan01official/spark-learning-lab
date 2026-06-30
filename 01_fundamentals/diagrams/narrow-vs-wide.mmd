@@ -1,0 +1,29 @@
+flowchart LR
+    subgraph Stage1["Stage 1 — pipelined narrow ops"]
+        direction TB
+        N1a[P0: read] --> N1b[P0: filter] --> N1c[P0: select]
+        N2a[P1: read] --> N2b[P1: filter] --> N2c[P1: select]
+        N3a[P2: read] --> N3b[P2: filter] --> N3c[P2: select]
+    end
+
+    subgraph Shuffle["SHUFFLE BOUNDARY<br/>(write to local disk, fetch over network)"]
+        SH[" "]
+    end
+
+    subgraph Stage2["Stage 2 — after wide op (groupBy)"]
+        direction TB
+        W1[P0: aggregate]
+        W2[P1: aggregate]
+        W3[P2: aggregate]
+    end
+
+    N1c --> SH
+    N2c --> SH
+    N3c --> SH
+    SH --> W1
+    SH --> W2
+    SH --> W3
+
+    style Stage1 fill:#dbeafe
+    style Stage2 fill:#dbeafe
+    style Shuffle fill:#fee2e2

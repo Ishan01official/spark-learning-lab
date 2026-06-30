@@ -1,0 +1,40 @@
+flowchart TB
+    subgraph Client["Client Machine"]
+        Code["Your PySpark script"]
+    end
+
+    subgraph DriverNode["Driver JVM"]
+        SS["SparkSession / SparkContext"]
+        Sched["DAGScheduler + TaskScheduler"]
+        BM["BlockManager (driver)"]
+    end
+
+    subgraph CM["Cluster Manager (YARN / K8s / Standalone / Databricks)"]
+        Alloc["Resource allocator"]
+    end
+
+    subgraph Ex1["Executor JVM #1"]
+        T1["Task slot 0"]
+        T2["Task slot 1"]
+        T3["Task slot 2"]
+        T4["Task slot 3"]
+        BM1["BlockManager + cache"]
+    end
+
+    subgraph Ex2["Executor JVM #2"]
+        T5["Task slot 0"]
+        T6["Task slot 1"]
+        T7["Task slot 2"]
+        T8["Task slot 3"]
+        BM2["BlockManager + cache"]
+    end
+
+    Code -->|"submits app"| SS
+    SS -->|"request executors"| Alloc
+    Alloc -->|"launch JVMs"| Ex1
+    Alloc -->|"launch JVMs"| Ex2
+    Sched -->|"send tasks"| Ex1
+    Sched -->|"send tasks"| Ex2
+    Ex1 -.->|"heartbeat + status"| Sched
+    Ex2 -.->|"heartbeat + status"| Sched
+    BM1 <-->|"shuffle blocks"| BM2

@@ -1,0 +1,10 @@
+flowchart TB
+    A[Jobs tab] -->|click a job| B[Job page<br/>= ordered list of stages]
+    B -->|click a stage| C[Stage page]
+    C --> D1[Task summary table<br/>Min/25/Median/75/Max]
+    C --> D2[Event timeline<br/>per task: GC, shuffle, run]
+    C --> D3[Task table<br/>find the slow ones]
+    C --> D4[Aggregated metrics by executor<br/>spot hot executors]
+    D1 -->|Max >> Median?| Skew["SKEW DETECTED"]
+    D1 -->|Spill > 0?| Memory["MEMORY UNDER-SIZED"]
+    D1 -->|GC time > 25%?| GC["GC PRESSURE"]

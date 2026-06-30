@@ -1,0 +1,15 @@
+sequenceDiagram
+    participant E as Engine
+    participant Src as Source<br/>(Kafka/file/Delta)
+    participant Off as offsets/<br/>(checkpoint)
+    participant Sink as Sink<br/>(Delta/etc.)
+    participant Com as commits/<br/>(checkpoint)
+    E->>Src: Request offsets [start_N, end_N]
+    Src-->>E: offsets
+    E->>Off: WAL: persist (N, start, end)
+    E->>E: Process micro-batch N
+    E->>Sink: Write batch N (tagged batch_id=N)
+    Note over Sink: Idempotent sink dedups by batch_id
+    Sink-->>E: ack
+    E->>Com: WAL: mark batch N committed
+    Note over E,Com: Crash before this -> redo<br/>(sink dedup keeps it exactly-once)
