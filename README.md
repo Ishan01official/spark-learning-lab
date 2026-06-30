@@ -46,8 +46,23 @@ spark-learning-lab/
 ├── 07_interview_prep/       # Databricks cert + scenario questions + troubleshooting.
 ├── 08_notes_from_books/     # Chapter-by-chapter book summaries.
 ├── 09_latest_updates/       # Spark 3.5 / 4.0 features, Spark Connect, K8s deployments.
+├── 10_architecture/         # Lakehouse and platform system design.
+├── 11_case_studies/         # Skew, small files, incident RCA, performance case studies.
+├── 12_certification_prep/   # Databricks/Spark certification study workflow.
+├── 13_debugging_playbook/   # Production failure and slowness playbooks.
+├── 14_spark_ui_lab/         # Jobs, stages, SQL tab, executors, shuffle, spill.
+├── 15_databricks_production/# Jobs, clusters, Unity Catalog, Auto Loader, workflows.
+├── 16_cloud_lakehouse/      # Cloud architecture, governance, cost, DR.
+├── 17_sql_for_spark/        # SQL fundamentals for Spark SQL.
+├── 18_python_for_pyspark/   # Python fundamentals for PySpark.
+├── 19_resources/            # Resource notes; see RESOURCE_MAP.md.
+├── 20_learning_strategy/    # Study plans and revision strategy.
 ├── data/                    # Tiny sample datasets used by examples.
 ├── BOOK_MAP.md
+├── RESOURCE_MAP.md
+├── INTERVIEW_BANK.md
+├── PROJECT_INDEX.md
+├── LEARNING_STRATEGY.md
 ├── ROADMAP.md
 ├── CONVENTIONS.md
 └── requirements.txt
@@ -89,12 +104,21 @@ Useful repo commands:
 make setup      # create .venv and install dependencies
 make validate   # check repo structure, empty docs, links, and Python syntax
 make smoke      # run the smallest PySpark example
+make test       # alias for validation for now
+make lint       # alias for validation for now
 make clean      # remove local Spark artifacts
 ```
 
 If setup or examples fail, start with [`TROUBLESHOOTING.md`](./TROUBLESHOOTING.md) and [`00_setup/local_spark_setup.md`](./00_setup/local_spark_setup.md).
 
 ## Learning path
+
+The full beginner-to-architect path is in [`ROADMAP.md`](./ROADMAP.md). Use these companion indexes as you grow:
+
+- [`PROJECT_INDEX.md`](./PROJECT_INDEX.md) - portfolio projects and production patterns
+- [`INTERVIEW_BANK.md`](./INTERVIEW_BANK.md) - structured answers by level and topic
+- [`RESOURCE_MAP.md`](./RESOURCE_MAP.md) - curated official docs, books, talks, and repos
+- [`LEARNING_STRATEGY.md`](./LEARNING_STRATEGY.md) - 30/60/90-day and 6-month plans
 
 ### Tier 1 — Foundations (must do)
 

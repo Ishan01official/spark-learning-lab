@@ -18,6 +18,17 @@ MODULES = [
     "07_interview_prep",
     "08_notes_from_books",
     "09_latest_updates",
+    "10_architecture",
+    "11_case_studies",
+    "12_certification_prep",
+    "13_debugging_playbook",
+    "14_spark_ui_lab",
+    "15_databricks_production",
+    "16_cloud_lakehouse",
+    "17_sql_for_spark",
+    "18_python_for_pyspark",
+    "19_resources",
+    "20_learning_strategy",
 ]
 
 
@@ -34,6 +45,10 @@ def check_required_files(errors: list[str]) -> None:
         "README.md",
         "LICENSE",
         "BOOK_MAP.md",
+        "RESOURCE_MAP.md",
+        "INTERVIEW_BANK.md",
+        "PROJECT_INDEX.md",
+        "LEARNING_STRATEGY.md",
         "ROADMAP.md",
         "CONVENTIONS.md",
         "CONTRIBUTING.md",
@@ -95,12 +110,27 @@ def check_markdown_links(errors: list[str]) -> None:
                 fail(errors, f"broken markdown link in {rel(path)}: {target}")
 
 
+def check_mermaid_files(errors: list[str]) -> None:
+    allowed_starts = ("flowchart ", "graph ", "sequenceDiagram", "classDiagram", "erDiagram", "gantt")
+    for path in ROOT.rglob("*.mmd"):
+        if ".git" in path.parts:
+            continue
+        text = path.read_text(encoding="utf-8").strip()
+        if not text:
+            fail(errors, f"empty mermaid file: {rel(path)}")
+            continue
+        first_line = text.splitlines()[0].strip()
+        if not first_line.startswith(allowed_starts):
+            fail(errors, f"mermaid file has unexpected first line in {rel(path)}: {first_line}")
+
+
 def main() -> int:
     errors: list[str] = []
     check_required_files(errors)
     check_empty_markdown(errors)
     check_python_syntax(errors)
     check_markdown_links(errors)
+    check_mermaid_files(errors)
 
     if errors:
         print("Repository validation failed:")

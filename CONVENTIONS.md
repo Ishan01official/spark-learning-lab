@@ -29,6 +29,14 @@ Each technical note has these sections, in order. Skip a section only if it genu
 6. **Failure modes** — what breaks, what the Spark UI shows, how to fix it.
 7. **References** — book chapter tags + curated video links.
 
+For new senior-level modules, also include these sections when relevant:
+
+1. **Simple explanation** — for a beginner.
+2. **Production explanation** — how it behaves at work.
+3. **Interview explanation** — how to answer under pressure.
+4. **Architecture explanation** — tradeoffs and system boundaries.
+5. **Exercise** — something the learner can run, inspect, or write.
+
 ## Code style (Python / PySpark)
 
 - Python 3.10+, PySpark 3.5+ (works on Databricks Runtime 14+).
@@ -77,3 +85,4 @@ Full book metadata in [`BOOK_MAP.md`](./BOOK_MAP.md).
 - No "10 best PySpark tricks" listicle pages.
 - No code without a line-by-line walkthrough.
 - No diagram for the sake of a diagram — only when it makes the concept faster to grasp.
+- No empty placeholder markdown files.
