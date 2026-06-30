@@ -1,0 +1,110 @@
+flowchart LR
+    subgraph Sources["1. Data sources"]
+        Files["Files<br/>CSV, JSON, Parquet"]
+        DB["Databases<br/>Postgres, MySQL, JDBC"]
+        Events["Event streams<br/>Kafka, Kinesis, Event Hubs"]
+        APIs["APIs<br/>REST, SaaS exports"]
+    end
+
+    subgraph Ingest["2. Ingestion layer"]
+        BatchIngest["Batch ingestion<br/>spark.read"]
+        StreamIngest["Streaming ingestion<br/>readStream"]
+        Landing["Landing zone<br/>raw immutable files"]
+    end
+
+    subgraph Driver["3. Spark driver"]
+        App["PySpark application<br/>your code"]
+        Session["SparkSession<br/>entry point"]
+        Catalyst["Catalyst optimizer<br/>logical to physical plan"]
+        DAG["DAG scheduler<br/>jobs, stages, tasks"]
+    end
+
+    subgraph Cluster["4. Cluster manager"]
+        Local["Local mode"]
+        Databricks["Databricks"]
+        K8s["Kubernetes"]
+        Yarn["YARN or standalone"]
+    end
+
+    subgraph Executors["5. Executors"]
+        E1["Executor 1<br/>tasks on partitions"]
+        E2["Executor 2<br/>tasks on partitions"]
+        E3["Executor N<br/>tasks on partitions"]
+        Shuffle["Shuffle<br/>network and disk exchange"]
+        Cache["Cache and memory<br/>persisted data"]
+    end
+
+    subgraph Lakehouse["6. Storage layers"]
+        Bronze["Bronze<br/>raw validated data"]
+        Silver["Silver<br/>cleaned, typed, deduped"]
+        Gold["Gold<br/>business-ready tables"]
+        DeltaLog["Delta transaction log<br/>ACID, time travel, MERGE"]
+    end
+
+    subgraph Serve["7. Consumption"]
+        BI["BI dashboards"]
+        ML["ML features"]
+        Apps["Data apps and APIs"]
+        Adhoc["Ad hoc SQL analysis"]
+    end
+
+    subgraph Ops["8. Operations"]
+        UI["Spark UI<br/>jobs, stages, SQL, storage"]
+        Logs["Driver and executor logs"]
+        Quality["Data quality checks"]
+        Tests["Repo validation and CI"]
+    end
+
+    Files --> BatchIngest
+    DB --> BatchIngest
+    APIs --> BatchIngest
+    Events --> StreamIngest
+
+    BatchIngest --> Landing
+    StreamIngest --> Landing
+    Landing --> App
+
+    App --> Session
+    Session --> Catalyst
+    Catalyst --> DAG
+    DAG --> Cluster
+
+    Cluster --> Local
+    Cluster --> Databricks
+    Cluster --> K8s
+    Cluster --> Yarn
+
+    Local --> E1
+    Databricks --> E1
+    K8s --> E2
+    Yarn --> E3
+
+    E1 <--> Shuffle
+    E2 <--> Shuffle
+    E3 <--> Shuffle
+    E1 <--> Cache
+    E2 <--> Cache
+    E3 <--> Cache
+
+    E1 --> Bronze
+    E2 --> Silver
+    E3 --> Gold
+    Bronze --> DeltaLog
+    Silver --> DeltaLog
+    Gold --> DeltaLog
+    Bronze --> Silver
+    Silver --> Gold
+
+    Gold --> BI
+    Gold --> ML
+    Gold --> Apps
+    Silver --> Adhoc
+
+    App --> UI
+    DAG --> UI
+    E1 --> Logs
+    E2 --> Logs
+    E3 --> Logs
+    Silver --> Quality
+    Gold --> Quality
+    App --> Tests

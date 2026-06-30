@@ -28,6 +28,10 @@ Not a tutorial dump. A structured curriculum where every concept is paired with:
 
 Chapter-by-chapter mapping lives in [`BOOK_MAP.md`](./BOOK_MAP.md).
 
+## Architecture diagram
+
+For the full end-to-end view of how data enters Spark, how the driver and executors process it, where Delta Lake fits, and how deployment/monitoring connect, see [`ARCHITECTURE.md`](./ARCHITECTURE.md).
+
 ## Repository layout
 
 ```text
