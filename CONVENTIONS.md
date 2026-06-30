@@ -62,7 +62,7 @@ Full book metadata in [`BOOK_MAP.md`](./BOOK_MAP.md).
 ## Video references
 
 - One curated link per concept, max. Prefer official Databricks Academy or Spark Summit talks.
-- Format: `📺 [Title — Speaker, Org, Year](url)`.
+- Format: `Video: Title, Speaker, Org, Year, URL`.
 - If the canonical talk is paywalled, link the slides or a free equivalent.
 
 ## Commit messages

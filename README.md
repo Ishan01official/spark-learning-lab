@@ -79,6 +79,17 @@ python 01_fundamentals/examples/02_dataframe_basics.py
 
 Spark UI is at <http://localhost:4040> while a job is running. **Open it every time.**
 
+Useful repo commands:
+
+```bash
+make setup      # create .venv and install dependencies
+make validate   # check repo structure, empty docs, links, and Python syntax
+make smoke      # run the smallest PySpark example
+make clean      # remove local Spark artifacts
+```
+
+If setup or examples fail, start with [`TROUBLESHOOTING.md`](./TROUBLESHOOTING.md) and [`00_setup/local_spark_setup.md`](./00_setup/local_spark_setup.md).
+
 ## Learning path
 
 ### Tier 1 — Foundations (must do)
