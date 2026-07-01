@@ -33,6 +33,8 @@ You cannot tune Spark from code alone. The UI shows jobs, stages, tasks, SQL pla
 2. Run `01_fundamentals/examples/04_narrow_wide_demo.py` and find the shuffle stage.
 3. Run `03_optimization/examples/06_explain_plans.py` and compare the plan with the SQL tab.
 4. Run a cache example and inspect the Storage tab.
+5. Run `11_case_studies/labs/01_skewed_join_lab.py` and identify the long-tail join task.
+6. Run `11_case_studies/labs/02_small_files_lab.py` and compare task/file counts.
 
 ## Screenshot Placeholder Policy
 

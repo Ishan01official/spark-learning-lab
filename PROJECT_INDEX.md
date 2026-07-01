@@ -26,8 +26,8 @@ Every project should teach a reusable production pattern. A complete project con
 | Streaming Kafka pipeline | Checkpoints and late data | local rate/Kafka-like source, watermark, restart test |
 | Delta Lake medallion pipeline | Lakehouse storage design | Bronze/Silver/Gold Delta tables |
 | Performance tuning case study | Plan reading and improvement | slow query, optimized query, measured result |
-| Skewed join debugging project | Hot key diagnosis | skew generator, salting fix, Spark UI checklist |
-| Small files optimization project | File sizing | many tiny files, compaction plan, output metrics |
+| Skewed join debugging project | Hot key diagnosis | `11_case_studies/labs/01_skewed_join_lab.py`, salting fix, Spark UI checklist |
+| Small files optimization project | File sizing | `11_case_studies/labs/02_small_files_lab.py`, file-count metric, output layout notes |
 | Production incident RCA project | Debugging narrative | timeline, symptoms, root cause, prevention |
 | End-to-end lakehouse project | Full platform thinking | ingestion, storage, orchestration, quality, serving |
 | Architect-level platform design | Tradeoff communication | requirements, diagram, security, cost, operations |
