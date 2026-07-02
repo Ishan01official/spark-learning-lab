@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Cloud Lakehouse Architecture</title>
+  <desc id="desc">Spark compute sits inside a governed cloud data platform.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#1a73e8"/></marker>
+    <marker id="arrow-red" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#d93025"/></marker>
+    <marker id="arrow-orange" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#f29900"/></marker>
+    <marker id="arrow-black" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#202124"/></marker>
+    <style>
+    .paper { fill: #fffdf8; }
+    .texture { fill: none; stroke: #202124; stroke-width: 1.2; opacity: .045; }
+    .sketch { stroke: #202124; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .sketch-fill { fill: #fffefa; }
+    .soft-fill { fill: #f8fbff; }
+    .warm-fill { fill: #fff7e6; }
+    .green-fill { fill: #f5fff7; }
+    .gold-fill { fill: #fff8d6; }
+    .accent-red { stroke: #d93025; fill: none; }
+    .accent-blue { stroke: #1a73e8; fill: none; }
+    .accent-orange { stroke: #f29900; fill: none; }
+    .label { font: 700 29px Arial, sans-serif; fill: #202124; }
+    .note { font: 22px Arial, sans-serif; fill: #3c4043; }
+    .tiny { font: 18px Arial, sans-serif; fill: #5f6368; }
+    .red-text { fill: #d93025; }
+    .blue-text { fill: #1a73e8; }
+    .orange-text { fill: #b06000; }
+</style>
+  </defs>
+
+  <rect width="1280" height="720" class="paper"/>
+  <path d="M48 78 C180 58, 260 92, 405 72 S700 88, 840 58 S1070 70, 1210 52" class="texture"/>
+  <path d="M62 632 C190 610, 322 654, 480 626 S780 652, 930 622 S1110 644, 1228 615" class="texture"/>
+  <circle cx="118" cy="210" r="46" class="texture"/>
+  <circle cx="1150" cy="560" r="60" class="texture"/>
+  <path d="M1060 120 q55 28 94 -10 q-26 56 25 82" class="texture"/>
+
+  <text x="640" y="58" text-anchor="middle" class="label">Cloud Lakehouse Architecture</text>
+  <text x="640" y="91" text-anchor="middle" class="note">Spark compute sits inside a governed cloud data platform.</text>
+
+  <path d="M95,204.4 C65,184.0 95,148.0 140,160.0 C160,125 220,135 235,163.6 C245,136.0 290,184.0 257,214.0 C235,260 125,258 95,204.4 Z" class="sketch soft-fill"/>
+<text x="167.5" y="192.0" text-anchor="middle" class="label">Sources</text>
+<text x="167.5" y="222.0" text-anchor="middle" class="note">D</text>
+<text x="167.5" y="247.0" text-anchor="middle" class="note">B</text>
+<text x="167.5" y="272.0" text-anchor="middle" class="note">s</text>
+<text x="167.5" y="297.0" text-anchor="middle" class="note">,</text>
+<text x="167.5" y="322.0" text-anchor="middle" class="note"> </text>
+<text x="167.5" y="347.0" text-anchor="middle" class="note">S</text>
+<text x="167.5" y="372.0" text-anchor="middle" class="note">a</text>
+<text x="167.5" y="397.0" text-anchor="middle" class="note">a</text>
+<text x="167.5" y="422.0" text-anchor="middle" class="note">S</text>
+<text x="167.5" y="447.0" text-anchor="middle" class="note">,</text>
+<text x="167.5" y="472.0" text-anchor="middle" class="note"> </text>
+<text x="167.5" y="497.0" text-anchor="middle" class="note">e</text>
+<text x="167.5" y="522.0" text-anchor="middle" class="note">v</text>
+<text x="167.5" y="547.0" text-anchor="middle" class="note">e</text>
+<text x="167.5" y="572.0" text-anchor="middle" class="note">n</text>
+<text x="167.5" y="597.0" text-anchor="middle" class="note">t</text>
+<text x="167.5" y="622.0" text-anchor="middle" class="note">s</text>
+  <path d="M370,125 C440,115 500,128 562,123 C575,195 568,175 563,227 C475,242 440,233 366,230 C355,160 364,180 370,125 Z" class="sketch sketch-fill"/>
+<text x="465.0" y="172.5" text-anchor="middle" class="label">Ingestion</text>
+<text x="465.0" y="202.5" text-anchor="middle" class="note">batch / streaming</text>
+  <path d="M700,125 C770,115 860,128 922,123 C935,195 928,175 923,227 C835,242 770,233 696,230 C685,160 694,180 700,125 Z" class="sketch warm-fill"/>
+<text x="810.0" y="172.5" text-anchor="middle" class="label">Object storage</text>
+<text x="810.0" y="202.5" text-anchor="middle" class="note">B</text>
+<text x="810.0" y="227.5" text-anchor="middle" class="note">r</text>
+<text x="810.0" y="252.5" text-anchor="middle" class="note">o</text>
+<text x="810.0" y="277.5" text-anchor="middle" class="note">n</text>
+<text x="810.0" y="302.5" text-anchor="middle" class="note">z</text>
+<text x="810.0" y="327.5" text-anchor="middle" class="note">e</text>
+<text x="810.0" y="352.5" text-anchor="middle" class="note">,</text>
+<text x="810.0" y="377.5" text-anchor="middle" class="note"> </text>
+<text x="810.0" y="402.5" text-anchor="middle" class="note">S</text>
+<text x="810.0" y="427.5" text-anchor="middle" class="note">i</text>
+<text x="810.0" y="452.5" text-anchor="middle" class="note">l</text>
+<text x="810.0" y="477.5" text-anchor="middle" class="note">v</text>
+<text x="810.0" y="502.5" text-anchor="middle" class="note">e</text>
+<text x="810.0" y="527.5" text-anchor="middle" class="note">r</text>
+<text x="810.0" y="552.5" text-anchor="middle" class="note">,</text>
+<text x="810.0" y="577.5" text-anchor="middle" class="note"> </text>
+<text x="810.0" y="602.5" text-anchor="middle" class="note">G</text>
+<text x="810.0" y="627.5" text-anchor="middle" class="note">o</text>
+<text x="810.0" y="652.5" text-anchor="middle" class="note">l</text>
+<text x="810.0" y="677.5" text-anchor="middle" class="note">d</text>
+  <path d="M700,410 C770,400 860,413 922,408 C935,480 928,460 923,512 C835,527 770,518 696,515 C685,445 694,465 700,410 Z" class="sketch soft-fill"/>
+<text x="810.0" y="457.5" text-anchor="middle" class="label">Spark compute</text>
+<text x="810.0" y="487.5" text-anchor="middle" class="note">Databricks / K8s</text>
+<text x="810.0" y="512.5" text-anchor="middle" class="note">jobs and clusters</text>
+  <path d="M1035,236.3 C1005,216.75 1035,182.25 1080,193.75 C1100,160 1160,170 1175,197.2 C1180,170.75 1225,216.75 1192,245.5 C1170,290 1065,288 1035,236.3 Z" class="sketch soft-fill"/>
+<text x="1105.0" y="224.5" text-anchor="middle" class="label">Serving</text>
+<text x="1105.0" y="254.5" text-anchor="middle" class="note">B</text>
+<text x="1105.0" y="279.5" text-anchor="middle" class="note">I</text>
+<text x="1105.0" y="304.5" text-anchor="middle" class="note">,</text>
+<text x="1105.0" y="329.5" text-anchor="middle" class="note"> </text>
+<text x="1105.0" y="354.5" text-anchor="middle" class="note">M</text>
+<text x="1105.0" y="379.5" text-anchor="middle" class="note">L</text>
+<text x="1105.0" y="404.5" text-anchor="middle" class="note">,</text>
+<text x="1105.0" y="429.5" text-anchor="middle" class="note"> </text>
+<text x="1105.0" y="454.5" text-anchor="middle" class="note">A</text>
+<text x="1105.0" y="479.5" text-anchor="middle" class="note">P</text>
+<text x="1105.0" y="504.5" text-anchor="middle" class="note">I</text>
+<text x="1105.0" y="529.5" text-anchor="middle" class="note">s</text>
+  <path d="M375,445 C445,435 515,448 577,443 C590,515 583,485 578,537 C490,552 445,543 371,540 C360,470 369,500 375,445 Z" class="sketch sketch-fill"/>
+<text x="475.0" y="487.5" text-anchor="middle" class="label">Orchestration</text>
+<text x="475.0" y="517.5" text-anchor="middle" class="note">Workflows / Airflow</text>
+  <path d="M90,450 C160,440 230,453 292,448 C305,520 298,490 293,542 C205,557 160,548 86,545 C75,475 84,505 90,450 Z" class="sketch soft-fill"/>
+<text x="190.0" y="492.5" text-anchor="middle" class="label">Governance</text>
+<text x="190.0" y="522.5" text-anchor="middle" class="note">IAM, catalog</text>
+<text x="190.0" y="547.5" text-anchor="middle" class="note">audit</text>
+  <path d="M1005,435 C1075,425 1115,438 1177,433 C1190,505 1183,475 1178,527 C1090,542 1075,533 1001,530 C990,460 999,490 1005,435 Z" class="sketch sketch-fill"/>
+<text x="1090.0" y="477.5" text-anchor="middle" class="label">Observability</text>
+<text x="1090.0" y="507.5" text-anchor="middle" class="note">logs, cost</text>
+<text x="1090.0" y="532.5" text-anchor="middle" class="note">data quality</text>
+  <path d="M265 190 C310 150,330 150,360 175" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M570 175 C625 140,650 150,690 175" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M930 175 C970 150,990 165,1010 190" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M810 235 C790 300,790 350,810 405" class="sketch accent-orange" marker-end="url(#arrow-orange)"/>
+  <path d="M585 492 C630 470,650 450,690 445" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M300 492 C450 385,565 245,690 210" class="sketch accent-red" stroke-dasharray="10 9" marker-end="url(#arrow-red)"/>
+  <path d="M995 480 C945 465,935 450,930 445" class="sketch accent-orange" marker-end="url(#arrow-orange)"/>
+  <path d="M617,344.2 C607.0,340.0 623.0,327.0 634.1,335 C665.0,343.0 659.0,378.7 636.0,381.0 C622.0,385.0 609.0,360.3 617,344.2 Z" fill="#202124"/><circle cx="630.3" cy="350.64" r="3.2" fill="#fff"/><circle cx="640.56" cy="351.56" r="3.2" fill="#fff"/><path d="M630.3,381.0 q-6.0,12.0 -16.0,18.0" class="sketch" stroke-width="2.2"/><path d="M640.94,381.0 q7.0,12.0 17.0,18.0" class="sketch" stroke-width="2.2"/><text x="636.0" y="425.0" text-anchor="middle" class="tiny">platform tradeoffs</text>
+
+</svg>

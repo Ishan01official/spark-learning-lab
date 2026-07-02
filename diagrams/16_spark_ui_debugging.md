@@ -34,6 +34,21 @@ flowchart TB
     Storage --> Fix
 ```
 
+## Visual asset
+
+![Spark UI Debugging](../assets/illustrations/handdrawn/spark_ui_debugging.svg)
+
+Open animation: [Spark UI Debugging Flow Animation](../assets/animations/spark_ui_debugging_flow.html)
+
+Plain English: start from the symptom, open the tab that has evidence, identify the metric that
+looks wrong, fix the cause, then rerun and compare.
+
+Common interview question: "A Spark job is slow and one task runs much longer than the rest. What
+do you check in the Spark UI?"
+
+Debugging angle: do not start with random configs. Use Jobs, Stages, SQL, Executors, and logs to
+prove whether the issue is skew, shuffle, memory spill, bad join strategy, or source I/O.
+
 ## Key takeaways
 
 - Use the UI to narrow the problem before changing configs.
@@ -60,3 +75,4 @@ and verification step. This is stronger than naming random Spark configs.
 - [`14_spark_ui_lab/01_jobs_stages_tasks.md`](../14_spark_ui_lab/01_jobs_stages_tasks.md)
 - [`03_optimization/11-spark-ui-tour.md`](../03_optimization/11-spark-ui-tour.md)
 - [`13_debugging_playbook/`](../13_debugging_playbook/)
+- [`assets/animations/spark_ui_debugging_flow.html`](../assets/animations/spark_ui_debugging_flow.html)

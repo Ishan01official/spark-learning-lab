@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Structured Streaming</title>
+  <desc id="desc">Events form micro-batches; checkpoints make recovery possible.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#1a73e8"/></marker>
+    <marker id="arrow-red" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#d93025"/></marker>
+    <marker id="arrow-orange" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#f29900"/></marker>
+    <marker id="arrow-black" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#202124"/></marker>
+    <style>
+    .paper { fill: #fffdf8; }
+    .texture { fill: none; stroke: #202124; stroke-width: 1.2; opacity: .045; }
+    .sketch { stroke: #202124; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .sketch-fill { fill: #fffefa; }
+    .soft-fill { fill: #f8fbff; }
+    .warm-fill { fill: #fff7e6; }
+    .green-fill { fill: #f5fff7; }
+    .gold-fill { fill: #fff8d6; }
+    .accent-red { stroke: #d93025; fill: none; }
+    .accent-blue { stroke: #1a73e8; fill: none; }
+    .accent-orange { stroke: #f29900; fill: none; }
+    .label { font: 700 29px Arial, sans-serif; fill: #202124; }
+    .note { font: 22px Arial, sans-serif; fill: #3c4043; }
+    .tiny { font: 18px Arial, sans-serif; fill: #5f6368; }
+    .red-text { fill: #d93025; }
+    .blue-text { fill: #1a73e8; }
+    .orange-text { fill: #b06000; }
+</style>
+  </defs>
+
+  <rect width="1280" height="720" class="paper"/>
+  <path d="M48 78 C180 58, 260 92, 405 72 S700 88, 840 58 S1070 70, 1210 52" class="texture"/>
+  <path d="M62 632 C190 610, 322 654, 480 626 S780 652, 930 622 S1110 644, 1228 615" class="texture"/>
+  <circle cx="118" cy="210" r="46" class="texture"/>
+  <circle cx="1150" cy="560" r="60" class="texture"/>
+  <path d="M1060 120 q55 28 94 -10 q-26 56 25 82" class="texture"/>
+
+  <text x="640" y="58" text-anchor="middle" class="label">Structured Streaming</text>
+  <text x="640" y="91" text-anchor="middle" class="note">Events form micro-batches; checkpoints make recovery possible.</text>
+
+  <path d="M65,240 C135,230 160,243 222,238 C235,310 228,280 223,332 C135,347 135,338 61,335 C50,265 59,295 65,240 Z" class="sketch sketch-fill"/>
+<text x="142.5" y="282.5" text-anchor="middle" class="label">Source</text>
+<text x="142.5" y="312.5" text-anchor="middle" class="note">Kafka / files</text>
+  <path d="M365,297.5 C335,276.25 365,238.75 410,251.25 C430,215 490,225 505,255.0 C535,226.25 580,276.25 547,307.5 C525,355 395,353 365,297.5 Z" class="sketch soft-fill"/>
+<text x="447.5" y="284.5" text-anchor="middle" class="label">Micro-batch</text>
+<text x="447.5" y="314.5" text-anchor="middle" class="note">trigger interval</text>
+  <path d="M650,215 C720,205 775,218 837,213 C850,285 843,270 838,322 C750,337 720,328 646,325 C635,255 644,270 650,215 Z" class="sketch soft-fill"/>
+<text x="742.5" y="265.0" text-anchor="middle" class="label">Processing</text>
+<text x="742.5" y="295.0" text-anchor="middle" class="note">DataFrame logic</text>
+<text x="742.5" y="320.0" text-anchor="middle" class="note">state updates</text>
+  <path d="M980,240 C1050,230 1075,243 1137,238 C1150,310 1143,280 1138,332 C1050,347 1050,338 976,335 C965,265 974,295 980,240 Z" class="sketch sketch-fill"/>
+<text x="1057.5" y="282.5" text-anchor="middle" class="label">Sink</text>
+<text x="1057.5" y="312.5" text-anchor="middle" class="note">Delta / Kafka</text>
+  <path d="M650,450 C720,440 800,453 862,448 C875,520 868,490 863,542 C775,557 720,548 646,545 C635,475 644,505 650,450 Z" class="sketch warm-fill"/>
+<text x="755.0" y="492.5" text-anchor="middle" class="label">State store</text>
+<text x="755.0" y="522.5" text-anchor="middle" class="note">windows / dedup</text>
+  <path d="M345,450 C415,440 495,453 557,448 C570,520 563,490 558,542 C470,557 415,548 341,545 C330,475 339,505 345,450 Z" class="sketch warm-fill"/>
+<text x="450.0" y="492.5" text-anchor="middle" class="label">Checkpoint</text>
+<text x="450.0" y="522.5" text-anchor="middle" class="note">offsets, commits</text>
+<text x="450.0" y="547.5" text-anchor="middle" class="note">resume here</text>
+  <path d="M230 285 C275 250,300 255,340 280" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M555 282 C600 250,615 250,640 270" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M845 270 C900 250,925 260,970 285" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M740 330 C720 380,720 410,740 445" class="sketch accent-orange" marker-end="url(#arrow-orange)"/>
+  <path d="M540 445 C510 390,495 345,510 300" class="sketch accent-red" stroke-dasharray="10 9" marker-end="url(#arrow-red)"/>
+  <text x="455" y="592" text-anchor="middle" class="note blue-text">checkpoint updates after each committed batch</text>
+  <path d="M515,354.2 C505.0,350.0 521.0,337.0 532.1,345 C563.0,353.0 557.0,388.7 534.0,391.0 C520.0,395.0 507.0,370.3 515,354.2 Z" fill="#202124"/><circle cx="528.3" cy="360.64" r="3.2" fill="#fff"/><circle cx="538.56" cy="361.56" r="3.2" fill="#fff"/><path d="M528.3,391.0 q-6.0,12.0 -16.0,18.0" class="sketch" stroke-width="2.2"/><path d="M538.94,391.0 q7.0,12.0 17.0,18.0" class="sketch" stroke-width="2.2"/><text x="534.0" y="435.0" text-anchor="middle" class="tiny">records progress</text>
+
+</svg>

@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Narrow vs Wide Transformations</title>
+  <desc id="desc">Narrow work stays local; wide work creates a shuffle boundary.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#1a73e8"/></marker>
+    <marker id="arrow-red" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#d93025"/></marker>
+    <marker id="arrow-orange" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#f29900"/></marker>
+    <marker id="arrow-black" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#202124"/></marker>
+    <style>
+    .paper { fill: #fffdf8; }
+    .texture { fill: none; stroke: #202124; stroke-width: 1.2; opacity: .045; }
+    .sketch { stroke: #202124; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .sketch-fill { fill: #fffefa; }
+    .soft-fill { fill: #f8fbff; }
+    .warm-fill { fill: #fff7e6; }
+    .green-fill { fill: #f5fff7; }
+    .gold-fill { fill: #fff8d6; }
+    .accent-red { stroke: #d93025; fill: none; }
+    .accent-blue { stroke: #1a73e8; fill: none; }
+    .accent-orange { stroke: #f29900; fill: none; }
+    .label { font: 700 29px Arial, sans-serif; fill: #202124; }
+    .note { font: 22px Arial, sans-serif; fill: #3c4043; }
+    .tiny { font: 18px Arial, sans-serif; fill: #5f6368; }
+    .red-text { fill: #d93025; }
+    .blue-text { fill: #1a73e8; }
+    .orange-text { fill: #b06000; }
+</style>
+  </defs>
+
+  <rect width="1280" height="720" class="paper"/>
+  <path d="M48 78 C180 58, 260 92, 405 72 S700 88, 840 58 S1070 70, 1210 52" class="texture"/>
+  <path d="M62 632 C190 610, 322 654, 480 626 S780 652, 930 622 S1110 644, 1228 615" class="texture"/>
+  <circle cx="118" cy="210" r="46" class="texture"/>
+  <circle cx="1150" cy="560" r="60" class="texture"/>
+  <path d="M1060 120 q55 28 94 -10 q-26 56 25 82" class="texture"/>
+
+  <text x="640" y="58" text-anchor="middle" class="label">Narrow vs Wide Transformations</text>
+  <text x="640" y="91" text-anchor="middle" class="note">Narrow work stays local; wide work creates a shuffle boundary.</text>
+
+  <text x="270" y="135" text-anchor="middle" class="label">Narrow: pipelined locally</text>
+  <path d="M95,190 C165,180 160,193 222,188 C235,260 228,205 223,257 C135,272 165,263 91,260 C80,190 89,245 95,190 Z" class="sketch sketch-fill"/>
+<text x="157.5" y="220.0" text-anchor="middle" class="label">P1</text>
+<text x="157.5" y="250.0" text-anchor="middle" class="note">filter</text>
+  <path d="M95,315 C165,305 160,318 222,313 C235,385 228,330 223,382 C135,397 165,388 91,385 C80,315 89,370 95,315 Z" class="sketch sketch-fill"/>
+<text x="157.5" y="345.0" text-anchor="middle" class="label">P2</text>
+<text x="157.5" y="375.0" text-anchor="middle" class="note">select</text>
+  <path d="M95,440 C165,430 160,443 222,438 C235,510 228,455 223,507 C135,522 165,513 91,510 C80,440 89,495 95,440 Z" class="sketch sketch-fill"/>
+<text x="157.5" y="470.0" text-anchor="middle" class="label">P3</text>
+<text x="157.5" y="500.0" text-anchor="middle" class="note">map</text>
+  <path d="M355,190 C425,180 420,193 482,188 C495,260 488,205 483,257 C395,272 425,263 351,260 C340,190 349,245 355,190 Z" class="sketch soft-fill"/>
+<text x="417.5" y="220.0" text-anchor="middle" class="label">P1 out</text>
+
+  <path d="M355,315 C425,305 420,318 482,313 C495,385 488,330 483,382 C395,397 425,388 351,385 C340,315 349,370 355,315 Z" class="sketch soft-fill"/>
+<text x="417.5" y="345.0" text-anchor="middle" class="label">P2 out</text>
+
+  <path d="M355,440 C425,430 420,443 482,438 C495,510 488,455 483,507 C395,522 425,513 351,510 C340,440 349,495 355,440 Z" class="sketch soft-fill"/>
+<text x="417.5" y="470.0" text-anchor="middle" class="label">P3 out</text>
+
+  <path d="M230 225 C275 205,300 205,345 225" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M230 350 C275 330,300 330,345 350" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M230 475 C275 455,300 455,345 475" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <text x="925" y="135" text-anchor="middle" class="label">Wide: data moves by key</text>
+  <path d="M700,190 C770,180 755,193 817,188 C830,260 823,200 818,252 C730,267 770,258 696,255 C685,185 694,245 700,190 Z" class="sketch sketch-fill"/>
+<text x="757.5" y="217.5" text-anchor="middle" class="label">P1</text>
+<text x="757.5" y="247.5" text-anchor="middle" class="note">A B C</text>
+  <path d="M700,315 C770,305 755,318 817,313 C830,385 823,325 818,377 C730,392 770,383 696,380 C685,310 694,370 700,315 Z" class="sketch sketch-fill"/>
+<text x="757.5" y="342.5" text-anchor="middle" class="label">P2</text>
+<text x="757.5" y="372.5" text-anchor="middle" class="note">B C D</text>
+  <path d="M700,440 C770,430 755,443 817,438 C830,510 823,450 818,502 C730,517 770,508 696,505 C685,435 694,495 700,440 Z" class="sketch sketch-fill"/>
+<text x="757.5" y="467.5" text-anchor="middle" class="label">P3</text>
+<text x="757.5" y="497.5" text-anchor="middle" class="note">A D</text>
+  <path d="M925,359.4 C895,339.0 925,303.0 970,315.0 C990,280 1050,290 1065,318.6 C1065,291.0 1110,339.0 1077,369.0 C1055,415 955,413 925,359.4 Z" class="sketch soft-fill"/>
+<text x="992.5" y="347.0" text-anchor="middle" class="label">shuffle</text>
+<text x="992.5" y="377.0" text-anchor="middle" class="note">groupBy / join</text>
+  <path d="M1120,190 C1190,180 1160,193 1222,188 C1235,260 1228,200 1223,252 C1135,267 1190,258 1116,255 C1105,185 1114,245 1120,190 Z" class="sketch soft-fill"/>
+<text x="1170.0" y="217.5" text-anchor="middle" class="label">A</text>
+
+  <path d="M1120,315 C1190,305 1160,318 1222,313 C1235,385 1228,325 1223,377 C1135,392 1190,383 1116,380 C1105,310 1114,370 1120,315 Z" class="sketch soft-fill"/>
+<text x="1170.0" y="342.5" text-anchor="middle" class="label">B/C</text>
+
+  <path d="M1120,440 C1190,430 1160,443 1222,438 C1235,510 1228,450 1223,502 C1135,517 1190,508 1116,505 C1105,435 1114,495 1120,440 Z" class="sketch soft-fill"/>
+<text x="1170.0" y="467.5" text-anchor="middle" class="label">D</text>
+
+  <path d="M825 220 C875 210,890 265,920 305" class="sketch accent-red" stroke-dasharray="10 9" marker-end="url(#arrow-red)"/>
+  <path d="M825 350 C865 345,885 335,900 335" class="sketch accent-red" stroke-dasharray="10 9" marker-end="url(#arrow-red)"/>
+  <path d="M825 475 C880 455,890 385,920 360" class="sketch accent-red" stroke-dasharray="10 9" marker-end="url(#arrow-red)"/>
+  <path d="M1085 320 C1110 250,1110 220,1110 220" class="sketch accent-red" marker-end="url(#arrow-red)"/>
+  <path d="M1085 340 C1100 340,1105 350,1110 350" class="sketch accent-red" marker-end="url(#arrow-red)"/>
+  <path d="M1085 360 C1115 420,1110 475,1110 475" class="sketch accent-red" marker-end="url(#arrow-red)"/>
+  <text x="810" y="575" text-anchor="middle" class="note red-text">red = expensive stage boundary</text>
+
+</svg>

@@ -41,13 +41,17 @@ read the diagram, run the code, open the Spark UI, then redraw the idea from mem
   roadmap, architecture, driver/executor flow, lazy evaluation, DAG/stages/tasks, narrow vs wide,
   shuffle, joins, skew, Catalyst/Tungsten/AQE, Delta Lake, streaming, medallion architecture,
   Spark UI debugging, Databricks production, cloud lakehouse, and certification prep.
-- **[`docs/visuals/hand_drawn_prompts/`](./docs/visuals/hand_drawn_prompts/)** — hand-drawn
-  illustration prompt files with white-paper, rough black pen, red/blue annotation style. Use them
-  to generate notebook-style teaching images without turning concepts into dense infographics.
-- **[`assets/svg/`](./assets/svg/README.md)** — lightweight static SVG explainers that can be
-  embedded directly in Markdown or opened in a browser.
-- **[`assets/animations/`](./assets/animations/README.md)** — self-contained animated HTML/SVG
-  explainers for lazy evaluation, shuffle, Delta Lake, streaming, and medallion architecture.
+- **[`docs/visuals/gallery.md`](./docs/visuals/gallery.md)** — real hand-drawn SVG explainers
+  embedded as GitHub-readable images, using white-paper sketch styling, rough black lines, curved
+  arrows, and small red/blue annotations.
+- **[`docs/visuals/animation_gallery.md`](./docs/visuals/animation_gallery.md)** — standalone
+  HTML/SVG animations for execution sequences such as lazy evaluation, shuffle, broadcast joins,
+  Delta commits, streaming micro-batches, and Spark UI debugging.
+- **[`assets/illustrations/handdrawn/`](./assets/illustrations/handdrawn/)** — the actual
+  standalone SVG source files used by the gallery and embedded concept docs.
+- **[`docs/visuals/hand_drawn_prompts/`](./docs/visuals/hand_drawn_prompts/)** — optional prompt
+  archive for future generated raster illustrations, not the primary visual output.
+- **[`assets/svg/`](./assets/svg/README.md)** — legacy static SVG explainers kept for older links.
 
 Suggested entry points: [Spark architecture](./diagrams/02_spark_architecture.md) ->
 [lazy evaluation and DAG](./diagrams/04_lazy_evaluation_and_dag.md) ->
@@ -82,7 +86,8 @@ spark-learning-lab/
 ├── 20_learning_strategy/    # Study plans and revision strategy.
 ├── data/                    # Tiny sample datasets used by examples.
 ├── diagrams/                # 19 visual concept pages (Mermaid, renders on GitHub).
-├── docs/visuals/            # Hand-drawn illustration prompts + style guide.
+├── docs/visuals/            # Visual galleries, animation index, and prompt archive.
+├── assets/illustrations/    # Real hand-drawn SVG learning assets.
 ├── assets/svg/              # Static SVG explainers.
 ├── assets/animations/       # Self-contained HTML/SVG animated explainers.
 ├── BOOK_MAP.md

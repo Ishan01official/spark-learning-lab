@@ -40,9 +40,10 @@ mental model, one interview angle.
 
 ## Companion visual assets
 
-- Hand-drawn prompt files: [`docs/visuals/hand_drawn_prompts/`](../docs/visuals/hand_drawn_prompts/)
-- Static SVG explainers: [`assets/svg/`](../assets/svg/)
-- Animated SVG/HTML explainers: [`assets/animations/`](../assets/animations/)
+- Real hand-drawn SVG gallery: [`docs/visuals/gallery.md`](../docs/visuals/gallery.md)
+- Animated HTML/SVG gallery: [`docs/visuals/animation_gallery.md`](../docs/visuals/animation_gallery.md)
+- SVG source folder: [`assets/illustrations/handdrawn/`](../assets/illustrations/handdrawn/)
+- Animation source folder: [`assets/animations/`](../assets/animations/)
 
 ## Page template
 

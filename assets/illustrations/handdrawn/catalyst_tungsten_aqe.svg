@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Catalyst, Tungsten, and AQE</title>
+  <desc id="desc">Plan, generate fast execution, then adapt using runtime statistics.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#1a73e8"/></marker>
+    <marker id="arrow-red" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#d93025"/></marker>
+    <marker id="arrow-orange" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#f29900"/></marker>
+    <marker id="arrow-black" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#202124"/></marker>
+    <style>
+    .paper { fill: #fffdf8; }
+    .texture { fill: none; stroke: #202124; stroke-width: 1.2; opacity: .045; }
+    .sketch { stroke: #202124; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .sketch-fill { fill: #fffefa; }
+    .soft-fill { fill: #f8fbff; }
+    .warm-fill { fill: #fff7e6; }
+    .green-fill { fill: #f5fff7; }
+    .gold-fill { fill: #fff8d6; }
+    .accent-red { stroke: #d93025; fill: none; }
+    .accent-blue { stroke: #1a73e8; fill: none; }
+    .accent-orange { stroke: #f29900; fill: none; }
+    .label { font: 700 29px Arial, sans-serif; fill: #202124; }
+    .note { font: 22px Arial, sans-serif; fill: #3c4043; }
+    .tiny { font: 18px Arial, sans-serif; fill: #5f6368; }
+    .red-text { fill: #d93025; }
+    .blue-text { fill: #1a73e8; }
+    .orange-text { fill: #b06000; }
+</style>
+  </defs>
+
+  <rect width="1280" height="720" class="paper"/>
+  <path d="M48 78 C180 58, 260 92, 405 72 S700 88, 840 58 S1070 70, 1210 52" class="texture"/>
+  <path d="M62 632 C190 610, 322 654, 480 626 S780 652, 930 622 S1110 644, 1228 615" class="texture"/>
+  <circle cx="118" cy="210" r="46" class="texture"/>
+  <circle cx="1150" cy="560" r="60" class="texture"/>
+  <path d="M1060 120 q55 28 94 -10 q-26 56 25 82" class="texture"/>
+
+  <text x="640" y="58" text-anchor="middle" class="label">Catalyst, Tungsten, and AQE</text>
+  <text x="640" y="91" text-anchor="middle" class="note">Plan, generate fast execution, then adapt using runtime statistics.</text>
+
+  <path d="M65,180 C135,170 175,183 237,178 C250,250 243,220 238,272 C150,287 135,278 61,275 C50,205 59,235 65,180 Z" class="sketch sketch-fill"/>
+<text x="150.0" y="222.5" text-anchor="middle" class="label">Your code</text>
+<text x="150.0" y="252.5" text-anchor="middle" class="note">DataFrame / SQL</text>
+  <path d="M340,150 C410,140 475,153 537,148 C550,220 543,230 538,282 C450,297 410,288 336,285 C325,215 334,205 340,150 Z" class="sketch soft-fill"/>
+<text x="437.5" y="212.5" text-anchor="middle" class="label">Catalyst</text>
+<text x="437.5" y="242.5" text-anchor="middle" class="note">resolve names</text>
+<text x="437.5" y="267.5" text-anchor="middle" class="note">optimize plan</text>
+  <path d="M640,180 C710,170 770,183 832,178 C845,250 838,220 833,272 C745,287 710,278 636,275 C625,205 634,235 640,180 Z" class="sketch warm-fill"/>
+<text x="735.0" y="222.5" text-anchor="middle" class="label">Tungsten</text>
+<text x="735.0" y="252.5" text-anchor="middle" class="note">codegen</text>
+<text x="735.0" y="277.5" text-anchor="middle" class="note">binary memory</text>
+  <path d="M960,165 C1030,155 1115,168 1177,163 C1190,235 1183,235 1178,287 C1090,302 1030,293 956,290 C945,220 954,220 960,165 Z" class="sketch sketch-fill"/>
+<text x="1067.5" y="222.5" text-anchor="middle" class="label">Executors</text>
+<text x="1067.5" y="252.5" text-anchor="middle" class="note">run physical plan</text>
+<text x="1067.5" y="277.5" text-anchor="middle" class="note">collect metrics</text>
+  <path d="M660,445 C730,435 840,448 902,443 C915,515 908,495 903,547 C815,562 730,553 656,550 C645,480 654,500 660,445 Z" class="sketch soft-fill"/>
+<text x="780.0" y="492.5" text-anchor="middle" class="label">AQE</text>
+<text x="780.0" y="522.5" text-anchor="middle" class="note">coalesce partitions</text>
+<text x="780.0" y="547.5" text-anchor="middle" class="note">switch joins</text>
+<text x="780.0" y="572.5" text-anchor="middle" class="note">split skew</text>
+  <path d="M245 225 C285 190,300 190,330 215" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M545 215 C590 190,610 195,630 220" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M840 225 C895 190,910 200,950 225" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M1060 295 C1020 390,925 440,910 480" class="sketch accent-orange" marker-end="url(#arrow-orange)"/>
+  <path d="M650 488 C575 435,575 280,630 235" class="sketch accent-red" stroke-dasharray="10 9" marker-end="url(#arrow-red)"/>
+  <text x="905" y="386" text-anchor="middle" class="note orange-text">real shuffle stats</text>
+  <path d="M468,339.2 C458.0,335.0 474.0,322.0 485.1,330 C516.0,338.0 510.0,373.7 487.0,376.0 C473.0,380.0 460.0,355.3 468,339.2 Z" fill="#202124"/><circle cx="481.3" cy="345.64" r="3.2" fill="#fff"/><circle cx="491.56" cy="346.56" r="3.2" fill="#fff"/><path d="M481.3,376.0 q-6.0,12.0 -16.0,18.0" class="sketch" stroke-width="2.2"/><path d="M491.94,376.0 q7.0,12.0 17.0,18.0" class="sketch" stroke-width="2.2"/><text x="487.0" y="420.0" text-anchor="middle" class="tiny">optimizer</text>
+
+</svg>

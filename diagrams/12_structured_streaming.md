@@ -24,6 +24,20 @@ flowchart LR
     Checkpoint -.->|"restart resumes here"| Trigger
 ```
 
+## Visual asset
+
+![Structured Streaming](../assets/illustrations/handdrawn/structured_streaming.svg)
+
+Open animation: [Streaming Micro-Batches Animation](../assets/animations/streaming_micro_batches.html)
+
+Plain English: each trigger reads new input, runs a normal Spark micro-batch, updates state, writes
+output, and records progress in the checkpoint.
+
+Common interview question: "How does Structured Streaming achieve exactly-once processing?"
+
+Debugging angle: for stuck or duplicated streaming output, check source offsets, checkpoint
+location, state size, sink idempotency, and whether the query changed incompatibly.
+
 ## Key takeaways
 
 - Each micro-batch is a Spark job.
@@ -48,4 +62,4 @@ can handle retries without duplicating output.
 - [`05_streaming/01-the-model.md`](../05_streaming/01-the-model.md)
 - [`05_streaming/03-triggers-modes-checkpoints.md`](../05_streaming/03-triggers-modes-checkpoints.md)
 - [`05_streaming/examples/01_rate_source_basic.py`](../05_streaming/examples/01_rate_source_basic.py)
-- [`assets/animations/streaming_animation.html`](../assets/animations/streaming_animation.html)
+- [`assets/animations/streaming_micro_batches.html`](../assets/animations/streaming_micro_batches.html)

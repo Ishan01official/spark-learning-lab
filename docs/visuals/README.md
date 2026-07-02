@@ -1,45 +1,43 @@
-# Visual Prompt Library
+# Visual Learning Assets
 
-This folder contains prompt files for hand-drawn Spark learning illustrations. The Mermaid pages in
-[`diagrams/`](../../diagrams/README.md) are precise. These prompts are for memorable notebook-style
-visuals that can be generated, redrawn, or used as teaching references.
+This folder indexes the real visual assets used by the Spark learning lab.
 
-## Style DNA
+The primary outputs are **standalone SVG explainers** and **animated HTML/SVG explainers**. Prompt
+files are kept as optional source material for future generated illustrations, but they are not the
+main learning asset.
 
-Use the same visual language across every generated image:
+## Start here
 
-- white or very light paper background
-- rough black pen lines with slight wobble
-- simple boxes, arrows, clouds, clusters, tables, and small characters
-- sparse red and blue handwritten annotations
-- playful but educational
-- clean negative space
-- one core concept per image
-- no realistic UI screenshots
-- no corporate infographic look
+- [Hand-drawn SVG gallery](./gallery.md) - embeds every SVG illustration from
+  `assets/illustrations/handdrawn/`
+- [Animation gallery](./animation_gallery.md) - links every standalone animated HTML/SVG explainer
+- [Prompt archive](./hand_drawn_prompts/) - optional image-generation prompts for future raster art
 
-## Prompt index
+## Visual style
 
-| Prompt | Concept | Companion Mermaid page |
-| --- | --- | --- |
-| [spark_overview.md](./hand_drawn_prompts/spark_overview.md) | Driver, executors, storage, shuffle | [02](../../diagrams/02_spark_architecture.md) |
-| [lazy_evaluation.md](./hand_drawn_prompts/lazy_evaluation.md) | Transformations wait until an action | [04](../../diagrams/04_lazy_evaluation_and_dag.md) |
-| [dag_and_stages.md](./hand_drawn_prompts/dag_and_stages.md) | Job, stages, tasks, partitions | [04](../../diagrams/04_lazy_evaluation_and_dag.md) |
-| [shuffle_and_partitioning.md](./hand_drawn_prompts/shuffle_and_partitioning.md) | Shuffle as repartitioning by key | [06](../../diagrams/06_partitioning_and_shuffle.md) |
-| [joins_and_skew.md](./hand_drawn_prompts/joins_and_skew.md) | Join strategy plus hot-key skew | [07](../../diagrams/07_join_strategies.md) and [08](../../diagrams/08_skew_and_broadcast_join.md) |
-| [delta_lake.md](./hand_drawn_prompts/delta_lake.md) | Delta log as table ledger | [10](../../diagrams/10_delta_lake_architecture.md) |
-| [streaming.md](./hand_drawn_prompts/streaming.md) | Micro-batch streaming loop | [12](../../diagrams/12_structured_streaming.md) |
-| [medallion_architecture.md](./hand_drawn_prompts/medallion_architecture.md) | Bronze to Silver to Gold | [14](../../diagrams/14_medallion_architecture.md) |
-| [spark_ui_debugging.md](./hand_drawn_prompts/spark_ui_debugging.md) | Spark UI as debugging detective board | [16](../../diagrams/16_spark_ui_debugging.md) |
-| [databricks_production.md](./hand_drawn_prompts/databricks_production.md) | Notebook to production job workflow | [17](../../diagrams/17_databricks_production_workflow.md) |
+The real SVG assets use a hand-drawn technical explainer style:
 
-## How to use
+- white/light paper background
+- rough black sketch lines
+- slightly imperfect boxes and curved arrows
+- small red and blue annotation accents
+- readable labels
+- one concept per image
+- no external assets, libraries, or CDN dependencies
 
-1. Open a prompt file.
-2. Copy the fenced prompt block into an image model.
-3. Check the output against the labels, style, and avoid lists.
-4. Regenerate if it becomes too dense, too corporate, too colorful, or too text-heavy.
-5. Save approved images near the lesson that uses them.
+## Where assets live
 
-The older [`prompts/`](./prompts/) folder is kept for compatibility with earlier drafts. New work
-should use [`hand_drawn_prompts/`](./hand_drawn_prompts/).
+```text
+assets/illustrations/handdrawn/   # real SVG explainers
+assets/animations/                # standalone animated HTML/SVG explainers
+docs/visuals/gallery.md           # SVG gallery
+docs/visuals/animation_gallery.md # animation index
+```
+
+## Recommended study loop
+
+1. Open a Mermaid concept page under [`diagrams/`](../../diagrams/README.md).
+2. Study the embedded hand-drawn SVG.
+3. Open the related animation for the execution sequence.
+4. Run the matching PySpark example.
+5. Redraw the visual from memory and explain it out loud.

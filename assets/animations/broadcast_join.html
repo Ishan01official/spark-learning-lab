@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Broadcast Join Animation</title>
+  <style>
+
+    body { margin:0; background:#fffdf8; color:#202124; font-family: Arial, sans-serif; }
+    main { max-width: 1120px; margin: 0 auto; padding: 20px; }
+    .controls { display:flex; gap:10px; margin: 0 0 14px; }
+    button { border:2px solid #202124; background:#fff; border-radius:7px; padding:8px 12px; font: 15px Arial, sans-serif; cursor:pointer; }
+    svg { width:100%; height:auto; border:1px solid #e8eaed; border-radius:8px; background:#fffdf8; }
+    .sketch { stroke:#202124; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; fill:none; }
+    .paper { fill:#fffdf8; }
+    .texture { fill:none; stroke:#202124; stroke-width:1.1; opacity:.045; }
+    .accent-red { stroke:#d93025; fill:none; }
+    .accent-blue { stroke:#1a73e8; fill:none; }
+    .accent-orange { stroke:#f29900; fill:none; }
+    .label { font:700 30px Arial, sans-serif; fill:#202124; }
+    .note { font:22px Arial, sans-serif; fill:#3c4043; }
+    .tiny { font:18px Arial, sans-serif; fill:#5f6368; }
+    .box { fill:#fffefa; stroke:#202124; stroke-width:3; rx:14; }
+    .soft { fill:#f8fbff; stroke:#1a73e8; stroke-width:3; rx:14; }
+    .warn { fill:#fff7e6; stroke:#d93025; stroke-width:3; rx:14; }
+    .token { fill:#1a73e8; stroke:#202124; stroke-width:2; }
+    .paused svg * { animation-play-state: paused !important; }
+    @media (prefers-reduced-motion: reduce) { svg * { animation: none !important; opacity: 1 !important; } }
+
+
+    .copy{opacity:0}.c1{animation:copy1 6s infinite}.c2{animation:copy2 6s infinite .35s}.c3{animation:copy3 6s infinite .7s}.done{opacity:0;animation:fade 6s infinite 3.2s}
+    @keyframes copy1{0%{opacity:0;transform:translate(170px,175px)}12%{opacity:1}55%,100%{transform:translate(590px,165px);opacity:1}}
+    @keyframes copy2{0%{opacity:0;transform:translate(170px,185px)}12%{opacity:1}55%,100%{transform:translate(590px,335px);opacity:1}}
+    @keyframes copy3{0%{opacity:0;transform:translate(170px,195px)}12%{opacity:1}55%,100%{transform:translate(590px,505px);opacity:1}}
+    @keyframes fade{0%,45%{opacity:0}55%,90%{opacity:1}100%{opacity:0}}
+
+  </style>
+</head>
+<body>
+<main>
+  <div class="controls" aria-label="Animation controls">
+    <button type="button" id="play">Play</button>
+    <button type="button" id="pause">Pause</button>
+    <button type="button" id="restart">Restart</button>
+  </div>
+  <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+    <title id="title">Broadcast Join Animation</title>
+    <desc id="desc">The small table is copied to executors; the large table remains partitioned and joins locally.</desc>
+    <defs>
+      <marker id="arrow-blue" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#1a73e8"/></marker>
+      <marker id="arrow-red" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#d93025"/></marker>
+      <marker id="arrow-orange" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#f29900"/></marker>
+    </defs>
+    <rect width="1280" height="720" class="paper"/>
+    <path d="M60 85 C260 55,430 95,610 68 S900 85,1210 58" class="texture"/>
+    <path d="M80 650 C260 625,390 665,560 635 S890 660,1210 628" class="texture"/>
+    <text x="640" y="56" text-anchor="middle" class="label">Broadcast Join Animation</text>
+    <text x="640" y="90" text-anchor="middle" class="note">The small table is copied to executors; the large table remains partitioned and joins locally.</text>
+
+    <rect x="80" y="140" width="190" height="90" class="soft"/><text x="175.0" y="194.0" text-anchor="middle" class="note">Small table</text><rect x="80" y="430" width="230" height="95" class="box"/><text x="195.0" y="486.5" text-anchor="middle" class="note">Large table partitions</text>
+    <rect x="520" y="130" width="190" height="90" class="box"/><text x="615.0" y="184.0" text-anchor="middle" class="note">Executor 1</text><rect x="520" y="300" width="190" height="90" class="box"/><text x="615.0" y="354.0" text-anchor="middle" class="note">Executor 2</text><rect x="520" y="470" width="190" height="90" class="box"/><text x="615.0" y="524.0" text-anchor="middle" class="note">Executor 3</text>
+    <rect x="920" y="285" width="220" height="100" class="soft"/><text x="1030.0" y="344.0" text-anchor="middle" class="note">Local joins complete</text>
+    <path d="M270 180 C360 120,430 145,520 170" class="sketch accent-blue"/><path d="M270 190 C360 260,430 315,520 340" class="sketch accent-blue"/><path d="M270 200 C365 430,430 485,520 510" class="sketch accent-blue"/>
+    <path d="M310 475 C390 465,440 500,520 510" class="sketch accent-orange"/>
+    <text x="355" y="115" class="note" fill="#1a73e8">broadcast small side</text>
+    <g class="copy c1"><rect x="0" y="0" width="46" height="30" rx="5" class="token"/></g><g class="copy c2"><rect x="0" y="0" width="46" height="30" rx="5" class="token"/></g><g class="copy c3"><rect x="0" y="0" width="46" height="30" rx="5" class="token"/></g>
+    <g class="done"><path d="M710 175 C805 210,855 255,920 320" class="sketch accent-blue" marker-end="url(#arrow-blue)"/><path d="M710 345 C805 340,855 330,920 325" class="sketch accent-blue" marker-end="url(#arrow-blue)"/><path d="M710 515 C805 470,855 400,920 345" class="sketch accent-blue" marker-end="url(#arrow-blue)"/></g>
+
+  </svg>
+</main>
+<script>
+  const body = document.body;
+  const svg = document.querySelector('svg');
+  document.getElementById('play').addEventListener('click', () => body.classList.remove('paused'));
+  document.getElementById('pause').addEventListener('click', () => body.classList.add('paused'));
+  document.getElementById('restart').addEventListener('click', () => {
+    body.classList.remove('paused');
+    svg.style.display = 'none';
+    void svg.offsetWidth;
+    svg.style.display = 'block';
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Databricks Production Workflow</title>
+  <desc id="desc">Exploration becomes production through code, jobs, governance, and monitoring.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#1a73e8"/></marker>
+    <marker id="arrow-red" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#d93025"/></marker>
+    <marker id="arrow-orange" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#f29900"/></marker>
+    <marker id="arrow-black" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#202124"/></marker>
+    <style>
+    .paper { fill: #fffdf8; }
+    .texture { fill: none; stroke: #202124; stroke-width: 1.2; opacity: .045; }
+    .sketch { stroke: #202124; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .sketch-fill { fill: #fffefa; }
+    .soft-fill { fill: #f8fbff; }
+    .warm-fill { fill: #fff7e6; }
+    .green-fill { fill: #f5fff7; }
+    .gold-fill { fill: #fff8d6; }
+    .accent-red { stroke: #d93025; fill: none; }
+    .accent-blue { stroke: #1a73e8; fill: none; }
+    .accent-orange { stroke: #f29900; fill: none; }
+    .label { font: 700 29px Arial, sans-serif; fill: #202124; }
+    .note { font: 22px Arial, sans-serif; fill: #3c4043; }
+    .tiny { font: 18px Arial, sans-serif; fill: #5f6368; }
+    .red-text { fill: #d93025; }
+    .blue-text { fill: #1a73e8; }
+    .orange-text { fill: #b06000; }
+</style>
+  </defs>
+
+  <rect width="1280" height="720" class="paper"/>
+  <path d="M48 78 C180 58, 260 92, 405 72 S700 88, 840 58 S1070 70, 1210 52" class="texture"/>
+  <path d="M62 632 C190 610, 322 654, 480 626 S780 652, 930 622 S1110 644, 1228 615" class="texture"/>
+  <circle cx="118" cy="210" r="46" class="texture"/>
+  <circle cx="1150" cy="560" r="60" class="texture"/>
+  <path d="M1060 120 q55 28 94 -10 q-26 56 25 82" class="texture"/>
+
+  <text x="640" y="58" text-anchor="middle" class="label">Databricks Production Workflow</text>
+  <text x="640" y="91" text-anchor="middle" class="note">Exploration becomes production through code, jobs, governance, and monitoring.</text>
+
+  <path d="M65,260 C135,250 140,263 202,258 C215,330 208,300 203,352 C115,367 135,358 61,355 C50,285 59,315 65,260 Z" class="sketch warm-fill"/>
+<text x="132.5" y="302.5" text-anchor="middle" class="label">Notebook</text>
+<text x="132.5" y="332.5" text-anchor="middle" class="note">explore</text>
+  <path d="M270,260 C340,250 345,263 407,258 C420,330 413,300 408,352 C320,367 340,358 266,355 C255,285 264,315 270,260 Z" class="sketch sketch-fill"/>
+<text x="337.5" y="302.5" text-anchor="middle" class="label">Repo code</text>
+<text x="337.5" y="332.5" text-anchor="middle" class="note">modules</text>
+<text x="337.5" y="357.5" text-anchor="middle" class="note">tests</text>
+  <path d="M475,260 C545,250 550,263 612,258 C625,330 618,300 613,352 C525,367 545,358 471,355 C460,285 469,315 475,260 Z" class="sketch sketch-fill"/>
+<text x="542.5" y="302.5" text-anchor="middle" class="label">PR + CI</text>
+<text x="542.5" y="332.5" text-anchor="middle" class="note">review</text>
+<text x="542.5" y="357.5" text-anchor="middle" class="note">validate</text>
+  <path d="M680,260 C750,250 755,263 817,258 C830,330 823,300 818,352 C730,367 750,358 676,355 C665,285 674,315 680,260 Z" class="sketch soft-fill"/>
+<text x="747.5" y="302.5" text-anchor="middle" class="label">Job cluster</text>
+<text x="747.5" y="332.5" text-anchor="middle" class="note">runtime</text>
+<text x="747.5" y="357.5" text-anchor="middle" class="note">policy</text>
+  <path d="M885,250 C955,240 980,253 1042,248 C1055,320 1048,310 1043,362 C955,377 955,368 881,365 C870,295 879,305 885,250 Z" class="sketch soft-fill"/>
+<text x="962.5" y="302.5" text-anchor="middle" class="label">Unity Catalog</text>
+<text x="962.5" y="332.5" text-anchor="middle" class="note">permissions</text>
+<text x="962.5" y="357.5" text-anchor="middle" class="note">lineage</text>
+  <path d="M1100,260 C1170,250 1165,263 1227,258 C1240,330 1233,300 1228,352 C1140,367 1170,358 1096,355 C1085,285 1094,315 1100,260 Z" class="sketch sketch-fill"/>
+<text x="1162.5" y="302.5" text-anchor="middle" class="label">Monitor</text>
+<text x="1162.5" y="332.5" text-anchor="middle" class="note">runs</text>
+<text x="1162.5" y="357.5" text-anchor="middle" class="note">alerts</text>
+  <path d="M210 310 C230 285,245 285,260 310" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M415 310 C435 285,450 285,465 310" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M620 310 C640 285,655 285,670 310" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M825 310 C850 285,860 285,875 310" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M1050 310 C1070 285,1080 285,1090 310" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <text x="70" y="420" text-anchor="start" class="note red-text">red flag: manual prod runs</text>
+  <text x="690" y="420" text-anchor="start" class="note blue-text">repeatable, governed workflow</text>
+  <path d="M520,439.2 C510.0,435.0 526.0,422.0 537.1,430 C568.0,438.0 562.0,473.7 539.0,476.0 C525.0,480.0 512.0,455.3 520,439.2 Z" fill="#202124"/><circle cx="533.3" cy="445.64" r="3.2" fill="#fff"/><circle cx="543.56" cy="446.56" r="3.2" fill="#fff"/><path d="M533.3,476.0 q-6.0,12.0 -16.0,18.0" class="sketch" stroke-width="2.2"/><path d="M543.94,476.0 q7.0,12.0 17.0,18.0" class="sketch" stroke-width="2.2"/><text x="539.0" y="520.0" text-anchor="middle" class="tiny">moves job card</text>
+
+</svg>

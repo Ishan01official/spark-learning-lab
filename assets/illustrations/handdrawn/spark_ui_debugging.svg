@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Spark UI Debugging</title>
+  <desc id="desc">Use UI evidence before changing code or configs.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#1a73e8"/></marker>
+    <marker id="arrow-red" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#d93025"/></marker>
+    <marker id="arrow-orange" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#f29900"/></marker>
+    <marker id="arrow-black" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#202124"/></marker>
+    <style>
+    .paper { fill: #fffdf8; }
+    .texture { fill: none; stroke: #202124; stroke-width: 1.2; opacity: .045; }
+    .sketch { stroke: #202124; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .sketch-fill { fill: #fffefa; }
+    .soft-fill { fill: #f8fbff; }
+    .warm-fill { fill: #fff7e6; }
+    .green-fill { fill: #f5fff7; }
+    .gold-fill { fill: #fff8d6; }
+    .accent-red { stroke: #d93025; fill: none; }
+    .accent-blue { stroke: #1a73e8; fill: none; }
+    .accent-orange { stroke: #f29900; fill: none; }
+    .label { font: 700 29px Arial, sans-serif; fill: #202124; }
+    .note { font: 22px Arial, sans-serif; fill: #3c4043; }
+    .tiny { font: 18px Arial, sans-serif; fill: #5f6368; }
+    .red-text { fill: #d93025; }
+    .blue-text { fill: #1a73e8; }
+    .orange-text { fill: #b06000; }
+</style>
+  </defs>
+
+  <rect width="1280" height="720" class="paper"/>
+  <path d="M48 78 C180 58, 260 92, 405 72 S700 88, 840 58 S1070 70, 1210 52" class="texture"/>
+  <path d="M62 632 C190 610, 322 654, 480 626 S780 652, 930 622 S1110 644, 1228 615" class="texture"/>
+  <circle cx="118" cy="210" r="46" class="texture"/>
+  <circle cx="1150" cy="560" r="60" class="texture"/>
+  <path d="M1060 120 q55 28 94 -10 q-26 56 25 82" class="texture"/>
+
+  <text x="640" y="58" text-anchor="middle" class="label">Spark UI Debugging</text>
+  <text x="640" y="91" text-anchor="middle" class="note">Use UI evidence before changing code or configs.</text>
+
+  <path d="M75,170 C145,160 205,173 267,168 C280,240 273,205 268,257 C180,272 145,263 71,260 C60,190 69,225 75,170 Z" class="sketch warm-fill"/>
+<text x="170.0" y="210.0" text-anchor="middle" class="label">Symptom</text>
+<text x="170.0" y="240.0" text-anchor="middle" class="note">failed or slow job</text>
+  <path d="M375,110 C445,100 475,113 537,108 C550,180 543,135 538,187 C450,202 445,193 371,190 C360,120 369,165 375,110 Z" class="sketch soft-fill"/>
+<text x="455.0" y="145.0" text-anchor="middle" class="label">Jobs tab</text>
+<text x="455.0" y="175.0" text-anchor="middle" class="note">which job?</text>
+  <path d="M375,250 C445,240 475,253 537,248 C550,320 543,275 538,327 C450,342 445,333 371,330 C360,260 369,305 375,250 Z" class="sketch soft-fill"/>
+<text x="455.0" y="285.0" text-anchor="middle" class="label">Stages tab</text>
+<text x="455.0" y="315.0" text-anchor="middle" class="note">which stage?</text>
+  <path d="M375,390 C445,380 475,393 537,388 C550,460 543,415 538,467 C450,482 445,473 371,470 C360,400 369,445 375,390 Z" class="sketch soft-fill"/>
+<text x="455.0" y="425.0" text-anchor="middle" class="label">SQL tab</text>
+<text x="455.0" y="455.0" text-anchor="middle" class="note">which plan?</text>
+  <path d="M680,165 C750,155 820,168 882,163 C895,235 888,220 883,272 C795,287 750,278 676,275 C665,205 674,220 680,165 Z" class="sketch warm-fill"/>
+<text x="780.0" y="215.0" text-anchor="middle" class="label">Task skew</text>
+<text x="780.0" y="245.0" text-anchor="middle" class="note">one long bar</text>
+<text x="780.0" y="270.0" text-anchor="middle" class="note">huge input</text>
+  <path d="M965,155 C1035,145 1105,158 1167,153 C1180,225 1173,215 1168,267 C1080,282 1035,273 961,270 C950,200 959,210 965,155 Z" class="sketch sketch-fill"/>
+<text x="1065.0" y="207.5" text-anchor="middle" class="label">Shuffle metrics</text>
+<text x="1065.0" y="237.5" text-anchor="middle" class="note">read / write</text>
+<text x="1065.0" y="262.5" text-anchor="middle" class="note">spill</text>
+  <path d="M965,415 C1035,405 1105,418 1167,413 C1180,485 1173,455 1168,507 C1080,522 1035,513 961,510 C950,440 959,470 965,415 Z" class="sketch soft-fill"/>
+<text x="1065.0" y="457.5" text-anchor="middle" class="label">Fix</text>
+<text x="1065.0" y="487.5" text-anchor="middle" class="note">broadcast, salt</text>
+<text x="1065.0" y="512.5" text-anchor="middle" class="note">partition, cache</text>
+  <path d="M275 215 C320 160,335 150,365 150" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M275 230 C320 255,335 280,365 290" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M545 290 C600 250,620 215,670 215" class="sketch accent-red" stroke-dasharray="10 9" marker-end="url(#arrow-red)"/>
+  <path d="M890 215 C920 195,930 195,955 205" class="sketch accent-orange" marker-end="url(#arrow-orange)"/>
+  <path d="M1060 275 C1100 330,1065 365,1065 410" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M620,404.2 C610.0,400.0 626.0,387.0 637.1,395 C668.0,403.0 662.0,438.7 639.0,441.0 C625.0,445.0 612.0,420.3 620,404.2 Z" fill="#202124"/><circle cx="633.3" cy="410.64" r="3.2" fill="#fff"/><circle cx="643.56" cy="411.56" r="3.2" fill="#fff"/><path d="M633.3,441.0 q-6.0,12.0 -16.0,18.0" class="sketch" stroke-width="2.2"/><path d="M643.94,441.0 q7.0,12.0 17.0,18.0" class="sketch" stroke-width="2.2"/><text x="639.0" y="485.0" text-anchor="middle" class="tiny">reads evidence</text>
+  <text x="700" y="595" text-anchor="middle" class="note blue-text">debugging flow: symptom -&gt; tab -&gt; metric -&gt; fix -&gt; rerun</text>
+
+</svg>

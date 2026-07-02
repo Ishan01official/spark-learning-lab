@@ -37,6 +37,20 @@ flowchart LR
     Exchange --> R3
 ```
 
+## Visual asset
+
+![Partitioning and Shuffle](../assets/illustrations/handdrawn/partitioning_shuffle.svg)
+
+Open animation: [Shuffle Flow Animation](../assets/animations/shuffle_flow.html)
+
+Plain English: partitions are the units of parallel work; shuffle is the expensive moment when
+records move across the cluster so matching keys end up together.
+
+Common interview question: "What is a shuffle, and how do `repartition()` and `coalesce()` differ?"
+
+Debugging angle: in the Spark UI, inspect shuffle read/write, spill, task duration spread, and
+output file counts before changing `spark.sql.shuffle.partitions`.
+
 ## Key takeaways
 
 - More partitions can improve parallelism but increase scheduling and small-file overhead.
@@ -62,4 +76,4 @@ task duration, spill, skew, output file sizes, and whether AQE already coalesced
 - [`03_optimization/05-partitioning-strategies.md`](../03_optimization/05-partitioning-strategies.md)
 - [`03_optimization/07-shuffle-tuning.md`](../03_optimization/07-shuffle-tuning.md)
 - [`03_optimization/examples/03_repartition_vs_coalesce.py`](../03_optimization/examples/03_repartition_vs_coalesce.py)
-- [`assets/animations/shuffle_animation.html`](../assets/animations/shuffle_animation.html)
+- [`assets/animations/shuffle_flow.html`](../assets/animations/shuffle_flow.html)

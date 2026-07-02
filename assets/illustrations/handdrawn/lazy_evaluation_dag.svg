@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Lazy Evaluation and DAG</title>
+  <desc id="desc">Transformations build a plan; an action triggers execution.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#1a73e8"/></marker>
+    <marker id="arrow-red" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#d93025"/></marker>
+    <marker id="arrow-orange" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#f29900"/></marker>
+    <marker id="arrow-black" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#202124"/></marker>
+    <style>
+    .paper { fill: #fffdf8; }
+    .texture { fill: none; stroke: #202124; stroke-width: 1.2; opacity: .045; }
+    .sketch { stroke: #202124; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .sketch-fill { fill: #fffefa; }
+    .soft-fill { fill: #f8fbff; }
+    .warm-fill { fill: #fff7e6; }
+    .green-fill { fill: #f5fff7; }
+    .gold-fill { fill: #fff8d6; }
+    .accent-red { stroke: #d93025; fill: none; }
+    .accent-blue { stroke: #1a73e8; fill: none; }
+    .accent-orange { stroke: #f29900; fill: none; }
+    .label { font: 700 29px Arial, sans-serif; fill: #202124; }
+    .note { font: 22px Arial, sans-serif; fill: #3c4043; }
+    .tiny { font: 18px Arial, sans-serif; fill: #5f6368; }
+    .red-text { fill: #d93025; }
+    .blue-text { fill: #1a73e8; }
+    .orange-text { fill: #b06000; }
+</style>
+  </defs>
+
+  <rect width="1280" height="720" class="paper"/>
+  <path d="M48 78 C180 58, 260 92, 405 72 S700 88, 840 58 S1070 70, 1210 52" class="texture"/>
+  <path d="M62 632 C190 610, 322 654, 480 626 S780 652, 930 622 S1110 644, 1228 615" class="texture"/>
+  <circle cx="118" cy="210" r="46" class="texture"/>
+  <circle cx="1150" cy="560" r="60" class="texture"/>
+  <path d="M1060 120 q55 28 94 -10 q-26 56 25 82" class="texture"/>
+
+  <text x="640" y="58" text-anchor="middle" class="label">Lazy Evaluation and DAG</text>
+  <text x="640" y="91" text-anchor="middle" class="note">Transformations build a plan; an action triggers execution.</text>
+
+  <path d="M65,165 C135,155 130,168 192,163 C205,235 198,184 193,236 C105,251 135,242 61,239 C50,169 59,220 65,165 Z" class="sketch sketch-fill"/>
+<text x="127.5" y="197.0" text-anchor="middle" class="label">read</text>
+
+  <path d="M245,165 C315,155 310,168 372,163 C385,235 378,184 373,236 C285,251 315,242 241,239 C230,169 239,220 245,165 Z" class="sketch sketch-fill"/>
+<text x="307.5" y="197.0" text-anchor="middle" class="label">filter</text>
+
+  <path d="M425,165 C495,155 490,168 552,163 C565,235 558,184 553,236 C465,251 495,242 421,239 C410,169 419,220 425,165 Z" class="sketch sketch-fill"/>
+<text x="487.5" y="197.0" text-anchor="middle" class="label">select</text>
+
+  <path d="M605,165 C675,155 670,168 732,163 C745,235 738,184 733,236 C645,251 675,242 601,239 C590,169 599,220 605,165 Z" class="sketch sketch-fill"/>
+<text x="667.5" y="197.0" text-anchor="middle" class="label">groupBy</text>
+
+  <path d="M860,145 C930,135 960,148 1022,143 C1035,215 1028,200 1023,252 C935,267 930,258 856,255 C845,185 854,200 860,145 Z" class="sketch warm-fill"/>
+<text x="940.0" y="195.0" text-anchor="middle" class="label">ACTION</text>
+<text x="940.0" y="225.0" text-anchor="middle" class="note">count / write</text>
+  <path d="M200 202 C215 190,225 190,235 202" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M380 202 C395 190,405 190,415 202" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M560 202 C575 190,585 190,595 202" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M740 202 C785 175,810 178,850 198" class="sketch accent-red" marker-end="url(#arrow-red)"/>
+  <text x="390" y="305" text-anchor="middle" class="note blue-text">lazy plan only - no executor work yet</text>
+  <path d="M765,289.2 C755.0,285.0 771.0,272.0 782.1,280 C813.0,288.0 807.0,323.7 784.0,326.0 C770.0,330.0 757.0,305.3 765,289.2 Z" fill="#202124"/><circle cx="778.3" cy="295.64" r="3.2" fill="#fff"/><circle cx="788.56" cy="296.56" r="3.2" fill="#fff"/><path d="M778.3,326.0 q-6.0,12.0 -16.0,18.0" class="sketch" stroke-width="2.2"/><path d="M788.94,326.0 q7.0,12.0 17.0,18.0" class="sketch" stroke-width="2.2"/><text x="784.0" y="370.0" text-anchor="middle" class="tiny">waits</text>
+  <path d="M155,435 C225,425 275,438 337,433 C350,505 343,475 338,527 C250,542 225,533 151,530 C140,460 149,490 155,435 Z" class="sketch soft-fill"/>
+<text x="245.0" y="477.5" text-anchor="middle" class="label">DAG appears</text>
+<text x="245.0" y="507.5" text-anchor="middle" class="note">lineage graph</text>
+  <path d="M445,435 C515,425 535,438 597,433 C610,505 603,475 598,527 C510,542 515,533 441,530 C430,460 439,490 445,435 Z" class="sketch soft-fill"/>
+<text x="520.0" y="477.5" text-anchor="middle" class="label">Job</text>
+<text x="520.0" y="507.5" text-anchor="middle" class="note">one action</text>
+  <path d="M710,397 C780,387 810,400 872,395 C885,467 878,422 873,474 C785,489 780,480 706,477 C695,407 704,452 710,397 Z" class="sketch sketch-fill"/>
+<text x="790.0" y="432.0" text-anchor="middle" class="label">Stage 0</text>
+<text x="790.0" y="462.0" text-anchor="middle" class="note">narrow ops</text>
+  <path d="M930,497 C1000,487 1030,500 1092,495 C1105,567 1098,522 1093,574 C1005,589 1000,580 926,577 C915,507 924,552 930,497 Z" class="sketch sketch-fill"/>
+<text x="1010.0" y="532.0" text-anchor="middle" class="label">Stage 1</text>
+<text x="1010.0" y="562.0" text-anchor="middle" class="note">after shuffle</text>
+  <path d="M940 260 C890 360,620 398,515 430" class="sketch accent-red" marker-end="url(#arrow-red)"/>
+  <path d="M345 478 C380 450,405 450,435 478" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M605 478 C650 428,675 420,700 435" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M880 442 C930 448,935 470,920 515" class="sketch accent-red" stroke-dasharray="10 9" marker-end="url(#arrow-red)"/>
+  <text x="820" y="535" text-anchor="middle" class="note red-text">shuffle cuts stages</text>
+
+</svg>

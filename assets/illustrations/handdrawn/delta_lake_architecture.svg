@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Delta Lake Architecture</title>
+  <desc id="desc">A Delta table is Parquet data files plus a transaction log.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#1a73e8"/></marker>
+    <marker id="arrow-red" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#d93025"/></marker>
+    <marker id="arrow-orange" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#f29900"/></marker>
+    <marker id="arrow-black" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#202124"/></marker>
+    <style>
+    .paper { fill: #fffdf8; }
+    .texture { fill: none; stroke: #202124; stroke-width: 1.2; opacity: .045; }
+    .sketch { stroke: #202124; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .sketch-fill { fill: #fffefa; }
+    .soft-fill { fill: #f8fbff; }
+    .warm-fill { fill: #fff7e6; }
+    .green-fill { fill: #f5fff7; }
+    .gold-fill { fill: #fff8d6; }
+    .accent-red { stroke: #d93025; fill: none; }
+    .accent-blue { stroke: #1a73e8; fill: none; }
+    .accent-orange { stroke: #f29900; fill: none; }
+    .label { font: 700 29px Arial, sans-serif; fill: #202124; }
+    .note { font: 22px Arial, sans-serif; fill: #3c4043; }
+    .tiny { font: 18px Arial, sans-serif; fill: #5f6368; }
+    .red-text { fill: #d93025; }
+    .blue-text { fill: #1a73e8; }
+    .orange-text { fill: #b06000; }
+</style>
+  </defs>
+
+  <rect width="1280" height="720" class="paper"/>
+  <path d="M48 78 C180 58, 260 92, 405 72 S700 88, 840 58 S1070 70, 1210 52" class="texture"/>
+  <path d="M62 632 C190 610, 322 654, 480 626 S780 652, 930 622 S1110 644, 1228 615" class="texture"/>
+  <circle cx="118" cy="210" r="46" class="texture"/>
+  <circle cx="1150" cy="560" r="60" class="texture"/>
+  <path d="M1060 120 q55 28 94 -10 q-26 56 25 82" class="texture"/>
+
+  <text x="640" y="58" text-anchor="middle" class="label">Delta Lake Architecture</text>
+  <text x="640" y="91" text-anchor="middle" class="note">A Delta table is Parquet data files plus a transaction log.</text>
+
+  <path d="M85,190 C155,180 215,193 277,188 C290,260 283,230 278,282 C190,297 155,288 81,285 C70,215 79,245 85,190 Z" class="sketch sketch-fill"/>
+<text x="180.0" y="232.5" text-anchor="middle" class="label">Spark writer</text>
+<text x="180.0" y="262.5" text-anchor="middle" class="note">append / MERGE</text>
+  <path d="M435,140 l80,0 l18,18 l0,58 l-98,0 Z" class="sketch warm-fill"/>
+<path d="M515,140 l0,18 l18,0" class="sketch"/>
+<text x="484" y="188" text-anchor="middle" class="tiny">0001.json</text><path d="M548,140 l80,0 l18,18 l0,58 l-98,0 Z" class="sketch warm-fill"/>
+<path d="M628,140 l0,18 l18,0" class="sketch"/>
+<text x="597" y="188" text-anchor="middle" class="tiny">0002.json</text><path d="M661,140 l80,0 l18,18 l0,58 l-98,0 Z" class="sketch warm-fill"/>
+<path d="M741,140 l0,18 l18,0" class="sketch"/>
+<text x="710" y="188" text-anchor="middle" class="tiny">checkpoint</text>
+  <path d="M440,100 C510,90 720,103 782,98 C795,170 788,185 783,237 C695,252 510,243 436,240 C425,170 434,155 440,100 Z" class="sketch warm-fill"/>
+<text x="610.0" y="133" text-anchor="middle" class="label">_delta_log</text>
+<text x="610.0" y="163" text-anchor="middle" class="note">commit ledger</text>
+  <path d="M415,355 C485,345 755,358 817,353 C830,425 823,455 818,507 C730,522 485,513 411,510 C400,440 409,410 415,355 Z" class="sketch sketch-fill"/>
+<text x="615.0" y="390" text-anchor="middle" class="label">Parquet data files</text>
+<text x="615.0" y="420" text-anchor="middle" class="note">added and removed by commits</text>
+  <path d="M455,438 l80,0 l18,18 l0,58 l-98,0 Z" class="sketch soft-fill"/>
+<path d="M535,438 l0,18 l18,0" class="sketch"/>
+<text x="504" y="486" text-anchor="middle" class="tiny">part-1</text><path d="M570,438 l80,0 l18,18 l0,58 l-98,0 Z" class="sketch soft-fill"/>
+<path d="M650,438 l0,18 l18,0" class="sketch"/>
+<text x="619" y="486" text-anchor="middle" class="tiny">part-2</text><path d="M685,438 l80,0 l18,18 l0,58 l-98,0 Z" class="sketch soft-fill"/>
+<path d="M765,438 l0,18 l18,0" class="sketch"/>
+<text x="734" y="486" text-anchor="middle" class="tiny">part-3</text>
+  <path d="M970,250 C1040,240 1120,253 1182,248 C1195,320 1188,315 1183,367 C1095,382 1040,373 966,370 C955,300 964,305 970,250 Z" class="sketch soft-fill"/>
+<text x="1075.0" y="305.0" text-anchor="middle" class="label">Snapshot</text>
+<text x="1075.0" y="335.0" text-anchor="middle" class="note">active files</text>
+<text x="1075.0" y="360.0" text-anchor="middle" class="note">version N</text>
+  <path d="M285 225 C355 150,385 145,430 150" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M285 245 C360 360,380 420,405 430" class="sketch accent-orange" marker-end="url(#arrow-orange)"/>
+  <path d="M790 170 C890 180,920 230,960 280" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M825 435 C900 400,920 345,960 320" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <text x="940" y="135" text-anchor="middle" class="note blue-text">ACID + time travel</text>
+  <path d="M335,329.2 C325.0,325.0 341.0,312.0 352.1,320 C383.0,328.0 377.0,363.7 354.0,366.0 C340.0,370.0 327.0,345.3 335,329.2 Z" fill="#202124"/><circle cx="348.3" cy="335.64" r="3.2" fill="#fff"/><circle cx="358.56" cy="336.56" r="3.2" fill="#fff"/><path d="M348.3,366.0 q-6.0,12.0 -16.0,18.0" class="sketch" stroke-width="2.2"/><path d="M358.94,366.0 q7.0,12.0 17.0,18.0" class="sketch" stroke-width="2.2"/><text x="354.0" y="410.0" text-anchor="middle" class="tiny">stamps commits</text>
+
+</svg>

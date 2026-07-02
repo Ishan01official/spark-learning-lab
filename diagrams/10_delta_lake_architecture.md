@@ -29,6 +29,21 @@ flowchart TB
     Log --> Features["ACID, schema enforcement,<br/>time travel, deletes, MERGE"]
 ```
 
+## Visual asset
+
+![Delta Lake Architecture](../assets/illustrations/handdrawn/delta_lake_architecture.svg)
+
+Open animation: [Delta Lake Transaction Log Animation](../assets/animations/delta_lake_transaction_log.html)
+
+Plain English: the Parquet files hold the data, but the `_delta_log` decides which files make up a
+valid table version.
+
+Common interview question: "How does Delta Lake provide ACID transactions and time travel on object
+storage?"
+
+Debugging angle: when a Delta table looks wrong, inspect the transaction log, recent commits, table
+history, and whether anyone modified files outside Delta.
+
 ## Key takeaways
 
 - The transaction log is the source of truth.
@@ -54,4 +69,4 @@ set of files.
 - [`04_delta_lake/01-why-delta.md`](../04_delta_lake/01-why-delta.md)
 - [`04_delta_lake/02-transaction-log.md`](../04_delta_lake/02-transaction-log.md)
 - [`04_delta_lake/03-acid-semantics.md`](../04_delta_lake/03-acid-semantics.md)
-- [`assets/animations/delta_lake_animation.html`](../assets/animations/delta_lake_animation.html)
+- [`assets/animations/delta_lake_transaction_log.html`](../assets/animations/delta_lake_transaction_log.html)

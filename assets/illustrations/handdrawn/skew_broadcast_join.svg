@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Skew and Broadcast Join</title>
+  <desc id="desc">Hot keys create stragglers; broadcast or salting can reduce pain.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#1a73e8"/></marker>
+    <marker id="arrow-red" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#d93025"/></marker>
+    <marker id="arrow-orange" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#f29900"/></marker>
+    <marker id="arrow-black" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#202124"/></marker>
+    <style>
+    .paper { fill: #fffdf8; }
+    .texture { fill: none; stroke: #202124; stroke-width: 1.2; opacity: .045; }
+    .sketch { stroke: #202124; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .sketch-fill { fill: #fffefa; }
+    .soft-fill { fill: #f8fbff; }
+    .warm-fill { fill: #fff7e6; }
+    .green-fill { fill: #f5fff7; }
+    .gold-fill { fill: #fff8d6; }
+    .accent-red { stroke: #d93025; fill: none; }
+    .accent-blue { stroke: #1a73e8; fill: none; }
+    .accent-orange { stroke: #f29900; fill: none; }
+    .label { font: 700 29px Arial, sans-serif; fill: #202124; }
+    .note { font: 22px Arial, sans-serif; fill: #3c4043; }
+    .tiny { font: 18px Arial, sans-serif; fill: #5f6368; }
+    .red-text { fill: #d93025; }
+    .blue-text { fill: #1a73e8; }
+    .orange-text { fill: #b06000; }
+</style>
+  </defs>
+
+  <rect width="1280" height="720" class="paper"/>
+  <path d="M48 78 C180 58, 260 92, 405 72 S700 88, 840 58 S1070 70, 1210 52" class="texture"/>
+  <path d="M62 632 C190 610, 322 654, 480 626 S780 652, 930 622 S1110 644, 1228 615" class="texture"/>
+  <circle cx="118" cy="210" r="46" class="texture"/>
+  <circle cx="1150" cy="560" r="60" class="texture"/>
+  <path d="M1060 120 q55 28 94 -10 q-26 56 25 82" class="texture"/>
+
+  <text x="640" y="58" text-anchor="middle" class="label">Skew and Broadcast Join</text>
+  <text x="640" y="91" text-anchor="middle" class="note">Hot keys create stragglers; broadcast or salting can reduce pain.</text>
+
+  <path d="M85,145 C155,135 215,148 277,143 C290,215 283,175 278,227 C190,242 155,233 81,230 C70,160 79,200 85,145 Z" class="sketch sketch-fill"/>
+<text x="180.0" y="182.5" text-anchor="middle" class="label">Normal keys</text>
+<text x="180.0" y="212.5" text-anchor="middle" class="note">small piles</text>
+  <path d="M85,295 C155,285 215,298 277,293 C290,365 283,325 278,377 C190,392 155,383 81,380 C70,310 79,350 85,295 Z" class="sketch sketch-fill"/>
+<text x="180.0" y="332.5" text-anchor="middle" class="label">Normal keys</text>
+<text x="180.0" y="362.5" text-anchor="middle" class="note">small piles</text>
+  <path d="M85,445 C155,435 215,448 277,443 C290,515 283,475 278,527 C190,542 155,533 81,530 C70,460 79,500 85,445 Z" class="sketch warm-fill"/>
+<text x="180.0" y="482.5" text-anchor="middle" class="label">Hot key</text>
+<text x="180.0" y="512.5" text-anchor="middle" class="note">customer_42</text>
+  <path d="M505,125 C575,115 635,128 697,123 C710,195 703,145 698,197 C610,212 575,203 501,200 C490,130 499,180 505,125 Z" class="sketch soft-fill"/>
+<text x="600.0" y="157.5" text-anchor="middle" class="label">Task 1</text>
+<text x="600.0" y="187.5" text-anchor="middle" class="note">fast</text>
+  <path d="M505,270 C575,260 635,273 697,268 C710,340 703,290 698,342 C610,357 575,348 501,345 C490,275 499,325 505,270 Z" class="sketch soft-fill"/>
+<text x="600.0" y="302.5" text-anchor="middle" class="label">Task 2</text>
+<text x="600.0" y="332.5" text-anchor="middle" class="note">fast</text>
+  <path d="M505,415 C575,405 680,418 742,413 C755,485 748,485 743,537 C655,552 575,543 501,540 C490,470 499,470 505,415 Z" class="sketch warm-fill"/>
+<text x="622.5" y="472.5" text-anchor="middle" class="label">Task 3 straggler</text>
+<text x="622.5" y="502.5" text-anchor="middle" class="note">huge shuffle read</text>
+<text x="622.5" y="527.5" text-anchor="middle" class="note">spill risk</text>
+  <path d="M285 185 C360 170,420 155,495 160" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M285 335 C360 320,420 300,495 305" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M285 485 C370 500,420 500,495 480" class="sketch accent-red" stroke-dasharray="10 9" marker-end="url(#arrow-red)"/>
+  <text x="360" y="550" text-anchor="middle" class="note red-text">one key overloads one partition</text>
+  <path d="M895,160 C965,150 1055,163 1117,158 C1130,230 1123,200 1118,252 C1030,267 965,258 891,255 C880,185 889,215 895,160 Z" class="sketch soft-fill"/>
+<text x="1005.0" y="202.5" text-anchor="middle" class="label">Broadcast fix</text>
+<text x="1005.0" y="232.5" text-anchor="middle" class="note">copy small side</text>
+<text x="1005.0" y="257.5" text-anchor="middle" class="note">avoid big shuffle</text>
+  <path d="M895,400 C965,390 1055,403 1117,398 C1130,470 1123,440 1118,492 C1030,507 965,498 891,495 C880,425 889,455 895,400 Z" class="sketch soft-fill"/>
+<text x="1005.0" y="442.5" text-anchor="middle" class="label">Salting fix</text>
+<text x="1005.0" y="472.5" text-anchor="middle" class="note">split hot key</text>
+<text x="1005.0" y="497.5" text-anchor="middle" class="note">then recombine</text>
+  <path d="M750 445 C825 380,840 230,885 205" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M750 500 C820 520,850 470,885 445" class="sketch accent-orange" marker-end="url(#arrow-orange)"/>
+  <path d="M805,319.2 C795.0,315.0 811.0,302.0 822.1,310 C853.0,318.0 847.0,353.7 824.0,356.0 C810.0,360.0 797.0,335.3 805,319.2 Z" fill="#202124"/><circle cx="818.3" cy="325.64" r="3.2" fill="#fff"/><circle cx="828.56" cy="326.56" r="3.2" fill="#fff"/><path d="M818.3,356.0 q-6.0,12.0 -16.0,18.0" class="sketch" stroke-width="2.2"/><path d="M828.94,356.0 q7.0,12.0 17.0,18.0" class="sketch" stroke-width="2.2"/><text x="824.0" y="400.0" text-anchor="middle" class="tiny">debugs</text>
+
+</svg>

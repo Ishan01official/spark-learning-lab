@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Streaming Micro-Batches Animation</title>
+  <style>
+
+    body { margin:0; background:#fffdf8; color:#202124; font-family: Arial, sans-serif; }
+    main { max-width: 1120px; margin: 0 auto; padding: 20px; }
+    .controls { display:flex; gap:10px; margin: 0 0 14px; }
+    button { border:2px solid #202124; background:#fff; border-radius:7px; padding:8px 12px; font: 15px Arial, sans-serif; cursor:pointer; }
+    svg { width:100%; height:auto; border:1px solid #e8eaed; border-radius:8px; background:#fffdf8; }
+    .sketch { stroke:#202124; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; fill:none; }
+    .paper { fill:#fffdf8; }
+    .texture { fill:none; stroke:#202124; stroke-width:1.1; opacity:.045; }
+    .accent-red { stroke:#d93025; fill:none; }
+    .accent-blue { stroke:#1a73e8; fill:none; }
+    .accent-orange { stroke:#f29900; fill:none; }
+    .label { font:700 30px Arial, sans-serif; fill:#202124; }
+    .note { font:22px Arial, sans-serif; fill:#3c4043; }
+    .tiny { font:18px Arial, sans-serif; fill:#5f6368; }
+    .box { fill:#fffefa; stroke:#202124; stroke-width:3; rx:14; }
+    .soft { fill:#f8fbff; stroke:#1a73e8; stroke-width:3; rx:14; }
+    .warn { fill:#fff7e6; stroke:#d93025; stroke-width:3; rx:14; }
+    .token { fill:#1a73e8; stroke:#202124; stroke-width:2; }
+    .paused svg * { animation-play-state: paused !important; }
+    @media (prefers-reduced-motion: reduce) { svg * { animation: none !important; opacity: 1 !important; } }
+
+
+    .e{animation:event 5.5s infinite}.e1{animation-delay:0s}.e2{animation-delay:.35s}.e3{animation-delay:.7s}.batch{animation:batch 5.5s infinite 1.5s}.pulse{opacity:.2;animation:pulse 5.5s infinite 3.3s}
+    @keyframes event{0%{opacity:0;transform:translate(125px,292px)}12%{opacity:1}45%,100%{transform:translate(425px,292px);opacity:0}}
+    @keyframes batch{0%{opacity:0;transform:translate(425px,274px)}15%{opacity:1}45%{transform:translate(720px,274px)}78%,100%{transform:translate(1010px,274px);opacity:0}}
+    @keyframes pulse{0%,55%{opacity:.2}65%,88%{opacity:1}100%{opacity:.2}}
+
+  </style>
+</head>
+<body>
+<main>
+  <div class="controls" aria-label="Animation controls">
+    <button type="button" id="play">Play</button>
+    <button type="button" id="pause">Pause</button>
+    <button type="button" id="restart">Restart</button>
+  </div>
+  <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+    <title id="title">Streaming Micro-Batches Animation</title>
+    <desc id="desc">Events arrive, form micro-batches, update checkpoint, and reach the sink.</desc>
+    <defs>
+      <marker id="arrow-blue" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#1a73e8"/></marker>
+      <marker id="arrow-red" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#d93025"/></marker>
+      <marker id="arrow-orange" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#f29900"/></marker>
+    </defs>
+    <rect width="1280" height="720" class="paper"/>
+    <path d="M60 85 C260 55,430 95,610 68 S900 85,1210 58" class="texture"/>
+    <path d="M80 650 C260 625,390 665,560 635 S890 660,1210 628" class="texture"/>
+    <text x="640" y="56" text-anchor="middle" class="label">Streaming Micro-Batches Animation</text>
+    <text x="640" y="90" text-anchor="middle" class="note">Events arrive, form micro-batches, update checkpoint, and reach the sink.</text>
+
+    <rect x="70" y="250" width="165" height="85" class="box"/><text x="152.5" y="301.5" text-anchor="middle" class="note">Source</text><rect x="340" y="235" width="190" height="115" class="soft"/><text x="435.0" y="301.5" text-anchor="middle" class="note">Micro-batch</text><rect x="630" y="235" width="190" height="115" class="box"/><text x="725.0" y="301.5" text-anchor="middle" class="note">Processing</text><rect x="930" y="250" width="165" height="85" class="box"/><text x="1012.5" y="301.5" text-anchor="middle" class="note">Sink</text><rect x="465" y="475" width="240" height="80" class="warn"/><text x="585.0" y="524.0" text-anchor="middle" class="note">Checkpoint</text>
+    <path d="M235 292 C275 260,300 265,340 290" class="sketch accent-blue"/><path d="M530 292 C570 260,590 260,630 290" class="sketch accent-blue"/><path d="M820 292 C865 265,890 270,930 292" class="sketch accent-blue"/><path d="M620 350 C600 405,590 445,585 475" class="sketch accent-red" marker-end="url(#arrow-red)"/>
+    <circle r="12" class="token e e1"/><circle r="12" class="token e e2"/><circle r="12" class="token e e3"/><rect x="0" y="0" width="70" height="36" rx="8" class="token batch"/>
+    <g class="pulse"><text x="585" y="525" text-anchor="middle" class="note">offsets + state committed</text></g>
+
+  </svg>
+</main>
+<script>
+  const body = document.body;
+  const svg = document.querySelector('svg');
+  document.getElementById('play').addEventListener('click', () => body.classList.remove('paused'));
+  document.getElementById('pause').addEventListener('click', () => body.classList.add('paused'));
+  document.getElementById('restart').addEventListener('click', () => {
+    body.classList.remove('paused');
+    svg.style.display = 'none';
+    void svg.offsetWidth;
+    svg.style.display = 'block';
+  });
+</script>
+</body>
+</html>

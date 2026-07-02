@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Join Strategies</title>
+  <desc id="desc">Spark either broadcasts a small side or shuffles large sides by key.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#1a73e8"/></marker>
+    <marker id="arrow-red" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#d93025"/></marker>
+    <marker id="arrow-orange" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#f29900"/></marker>
+    <marker id="arrow-black" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#202124"/></marker>
+    <style>
+    .paper { fill: #fffdf8; }
+    .texture { fill: none; stroke: #202124; stroke-width: 1.2; opacity: .045; }
+    .sketch { stroke: #202124; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .sketch-fill { fill: #fffefa; }
+    .soft-fill { fill: #f8fbff; }
+    .warm-fill { fill: #fff7e6; }
+    .green-fill { fill: #f5fff7; }
+    .gold-fill { fill: #fff8d6; }
+    .accent-red { stroke: #d93025; fill: none; }
+    .accent-blue { stroke: #1a73e8; fill: none; }
+    .accent-orange { stroke: #f29900; fill: none; }
+    .label { font: 700 29px Arial, sans-serif; fill: #202124; }
+    .note { font: 22px Arial, sans-serif; fill: #3c4043; }
+    .tiny { font: 18px Arial, sans-serif; fill: #5f6368; }
+    .red-text { fill: #d93025; }
+    .blue-text { fill: #1a73e8; }
+    .orange-text { fill: #b06000; }
+</style>
+  </defs>
+
+  <rect width="1280" height="720" class="paper"/>
+  <path d="M48 78 C180 58, 260 92, 405 72 S700 88, 840 58 S1070 70, 1210 52" class="texture"/>
+  <path d="M62 632 C190 610, 322 654, 480 626 S780 652, 930 622 S1110 644, 1228 615" class="texture"/>
+  <circle cx="118" cy="210" r="46" class="texture"/>
+  <circle cx="1150" cy="560" r="60" class="texture"/>
+  <path d="M1060 120 q55 28 94 -10 q-26 56 25 82" class="texture"/>
+
+  <text x="640" y="58" text-anchor="middle" class="label">Join Strategies</text>
+  <text x="640" y="91" text-anchor="middle" class="note">Spark either broadcasts a small side or shuffles large sides by key.</text>
+
+  <path d="M75,155 C145,145 205,158 267,153 C280,225 273,205 268,257 C180,272 145,263 71,260 C60,190 69,210 75,155 Z" class="sketch soft-fill"/>
+<text x="170.0" y="202.5" text-anchor="middle" class="label">Small table</text>
+<text x="170.0" y="232.5" text-anchor="middle" class="note">dimension / lookup</text>
+  <path d="M82,425 C152,415 232,428 294,423 C307,495 300,470 295,522 C207,537 152,528 78,525 C67,455 76,480 82,425 Z" class="sketch sketch-fill"/>
+<text x="187.0" y="470.0" text-anchor="middle" class="label">Large table</text>
+<text x="187.0" y="500.0" text-anchor="middle" class="note">keeps partitions</text>
+  <path d="M495,125 C565,115 625,128 687,123 C700,195 693,155 688,207 C600,222 565,213 491,210 C480,140 489,180 495,125 Z" class="sketch sketch-fill"/>
+<text x="590.0" y="162.5" text-anchor="middle" class="label">Executor 1</text>
+<text x="590.0" y="192.5" text-anchor="middle" class="note">local join</text>
+  <path d="M495,290 C565,280 625,293 687,288 C700,360 693,320 688,372 C600,387 565,378 491,375 C480,305 489,345 495,290 Z" class="sketch sketch-fill"/>
+<text x="590.0" y="327.5" text-anchor="middle" class="label">Executor 2</text>
+<text x="590.0" y="357.5" text-anchor="middle" class="note">local join</text>
+  <path d="M495,455 C565,445 625,458 687,453 C700,525 693,485 688,537 C600,552 565,543 491,540 C480,470 489,510 495,455 Z" class="sketch sketch-fill"/>
+<text x="590.0" y="492.5" text-anchor="middle" class="label">Executor 3</text>
+<text x="590.0" y="522.5" text-anchor="middle" class="note">local join</text>
+  <path d="M275 185 C360 120,410 130,485 160" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M275 205 C360 265,410 295,485 325" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <path d="M275 225 C360 420,410 460,485 490" class="sketch accent-blue" marker-end="url(#arrow-blue)"/>
+  <text x="335" y="115" text-anchor="middle" class="note blue-text">broadcast small side</text>
+  <path d="M302 460 C380 450,410 475,485 490" class="sketch accent-orange" marker-end="url(#arrow-orange)"/>
+  <path d="M870,200 C940,190 1060,203 1122,198 C1135,270 1128,250 1123,302 C1035,317 940,308 866,305 C855,235 864,255 870,200 Z" class="sketch warm-fill"/>
+<text x="995.0" y="247.5" text-anchor="middle" class="label">Sort-merge join</text>
+<text x="995.0" y="277.5" text-anchor="middle" class="note">when both sides are large</text>
+<text x="995.0" y="302.5" text-anchor="middle" class="note">shuffle + sort</text>
+  <path d="M695 322 C780 280,810 250,860 235" class="sketch accent-red" stroke-dasharray="10 9" marker-end="url(#arrow-red)"/>
+  <text x="850" y="368" text-anchor="middle" class="note red-text">fallback at scale</text>
+  <path d="M744,476.2 C734.0,472.0 750.0,459.0 761.1,467 C792.0,475.0 786.0,510.7 763.0,513.0 C749.0,517.0 736.0,492.3 744,476.2 Z" fill="#202124"/><circle cx="757.3" cy="482.64" r="3.2" fill="#fff"/><circle cx="767.56" cy="483.56" r="3.2" fill="#fff"/><path d="M757.3,513.0 q-6.0,12.0 -16.0,18.0" class="sketch" stroke-width="2.2"/><path d="M767.94,513.0 q7.0,12.0 17.0,18.0" class="sketch" stroke-width="2.2"/><text x="763.0" y="557.0" text-anchor="middle" class="tiny">checks plan</text>
+
+</svg>

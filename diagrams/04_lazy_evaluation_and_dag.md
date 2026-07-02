@@ -30,6 +30,20 @@ flowchart LR
     Stage2 --> Tasks2["tasks = shuffle partitions"]
 ```
 
+## Visual asset
+
+![Lazy Evaluation DAG](../assets/illustrations/handdrawn/lazy_evaluation_dag.svg)
+
+Open animation: [Lazy Evaluation DAG Animation](../assets/animations/lazy_evaluation_dag.html)
+
+Plain English: build the recipe first, press the action button later, then Spark turns the recipe
+into a DAG, a job, stages, and tasks.
+
+Common interview question: "Why does Spark use lazy evaluation, and what creates a stage boundary?"
+
+Debugging angle: if an error appears at `show()` or `write()`, the broken expression may have been
+created several transformations earlier. Use schema checks and `explain()` before the action.
+
 ## Key takeaways
 
 - Transformations do not execute until an action appears.
@@ -55,4 +69,4 @@ operations, push filters and columns down, and avoid unnecessary intermediate ma
 - [`01_fundamentals/05-lazy-evaluation-and-dag.md`](../01_fundamentals/05-lazy-evaluation-and-dag.md)
 - [`01_fundamentals/02-job-stage-task.md`](../01_fundamentals/02-job-stage-task.md)
 - [`01_fundamentals/examples/03_lazy_eval_demo.py`](../01_fundamentals/examples/03_lazy_eval_demo.py)
-- [`assets/animations/lazy_evaluation_animation.html`](../assets/animations/lazy_evaluation_animation.html)
+- [`assets/animations/lazy_evaluation_dag.html`](../assets/animations/lazy_evaluation_dag.html)
