@@ -32,6 +32,27 @@ Chapter-by-chapter mapping lives in [`BOOK_MAP.md`](./BOOK_MAP.md).
 
 For the full end-to-end view of how data enters Spark, how the driver and executors process it, where Delta Lake fits, and how deployment/monitoring connect, see [`ARCHITECTURE.md`](./ARCHITECTURE.md).
 
+## Visual learning
+
+Every core concept in this repo has a visual explainer. Two complementary systems:
+
+- **[`diagrams/`](./diagrams/README.md)** — 20 numbered concept pages, one per big idea
+  (architecture, DAG, shuffle, joins, skew, Delta internals, streaming, medallion, Spark UI
+  triage, Databricks, lakehouse, interview map). Each page: why it matters → plain-English
+  explanation → GitHub-rendered Mermaid diagram → key takeaways → common mistakes → interview
+  angle → links back into the module notes. Read the page *before* its module; redraw the diagram
+  from memory *after*.
+- **[`docs/visuals/`](./docs/visuals/README.md)** — hand-drawn illustration prompts for the eight
+  most metaphor-friendly concepts (notebook-sketch style: white paper, rough black pen, red/blue
+  accents). Paste a prompt into an image model, review against its checklist, and embed the result
+  in READMEs, talks, or posts.
+
+Suggested entry points: [Spark architecture](./diagrams/02_spark_architecture.md) →
+[lazy evaluation & DAG](./diagrams/04_lazy_evaluation_and_dag.md) →
+[narrow vs wide](./diagrams/05_narrow_vs_wide_transformations.md) →
+[partitioning & shuffle](./diagrams/06_partitioning_and_shuffle.md). The full index with the
+recommended order is in [`diagrams/README.md`](./diagrams/README.md).
+
 ## Repository layout
 
 ```text
@@ -58,6 +79,8 @@ spark-learning-lab/
 ├── 19_resources/            # Resource notes; see RESOURCE_MAP.md.
 ├── 20_learning_strategy/    # Study plans and revision strategy.
 ├── data/                    # Tiny sample datasets used by examples.
+├── diagrams/                # 20 visual concept pages (Mermaid, renders on GitHub).
+├── docs/visuals/            # Hand-drawn illustration prompts + style guide.
 ├── BOOK_MAP.md
 ├── RESOURCE_MAP.md
 ├── INTERVIEW_BANK.md
