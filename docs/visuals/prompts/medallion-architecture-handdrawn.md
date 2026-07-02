@@ -4,7 +4,7 @@
 
 Bronze/silver/gold as a three-station refinery: keep everything, clean it once, shape it for the
 consumer. The image version of
-[diagram 15](../../../diagrams/15_medallion_architecture.md) — ideal for READMEs and talks because
+[diagram 14](../../../diagrams/14_medallion_architecture.md) — ideal for READMEs and talks because
 the metaphor survives without any caption.
 
 ## Final image-generation prompt

@@ -1,103 +1,56 @@
-# 05 — Narrow vs Wide Transformations
+# 05 - Narrow vs Wide Transformations
 
-## Why this matters
+## Why it matters
 
-This one distinction predicts your job's cost. Narrow transformations are nearly free — they stay
-inside a partition. Wide transformations trigger a **shuffle**: data serialized, written to disk,
-sent over the network, and read back. Most Spark performance tuning is really just "reduce, delay,
-or shrink the wide operations".
+This is the first performance fork in Spark. Narrow transformations stay local and pipeline well.
+Wide transformations move data across the cluster and create shuffle cost.
 
-## The idea in plain English
+## Plain English explanation
 
-Ask one question about any operation: *can each output partition be built from just one input
-partition?* If yes (filter a row, add a column), it's **narrow** — every executor works
-independently. If no (group all rows with the same key, join two tables), rows must physically
-move so matching keys land together — that's **wide**, and the movement is the shuffle.
+A narrow transformation lets each output partition depend on one input partition. A wide
+transformation needs records with the same key to meet, so data is shuffled across executors.
 
-## Diagram — narrow: partitions stay put
+## Mermaid diagram
 
 ```mermaid
-flowchart LR
-    subgraph In["Input partitions"]
-        P1["Partition 1"]
-        P2["Partition 2"]
-        P3["Partition 3"]
+flowchart TB
+    subgraph Narrow["Narrow dependency: no shuffle"]
+        N1["Partition 1"] --> NF1["filter / select / map"] --> NO1["Partition 1 output"]
+        N2["Partition 2"] --> NF2["filter / select / map"] --> NO2["Partition 2 output"]
+        N3["Partition 3"] --> NF3["filter / select / map"] --> NO3["Partition 3 output"]
     end
-    subgraph Out["Output partitions"]
-        Q1["Partition 1"]
-        Q2["Partition 2"]
-        Q3["Partition 3"]
+
+    subgraph Wide["Wide dependency: shuffle"]
+        W1["Partition 1"] --> S["Exchange by key"]
+        W2["Partition 2"] --> S
+        W3["Partition 3"] --> S
+        S --> A["Reducer partition A"]
+        S --> B["Reducer partition B"]
     end
-    P1 -->|"map / filter / select"| Q1
-    P2 -->|"map / filter / select"| Q2
-    P3 -->|"map / filter / select"| Q3
 ```
-
-## Diagram — wide: every output reads from every input
-
-```mermaid
-flowchart LR
-    subgraph In["Input partitions"]
-        P1["Partition 1<br/>keys a, b, c"]
-        P2["Partition 2<br/>keys a, c"]
-        P3["Partition 3<br/>keys b, c"]
-    end
-    subgraph Out["Shuffle output"]
-        Q1["Partition 1<br/>all key a"]
-        Q2["Partition 2<br/>all key b"]
-        Q3["Partition 3<br/>all key c"]
-    end
-    P1 --> Q1
-    P1 --> Q2
-    P1 --> Q3
-    P2 --> Q1
-    P2 --> Q3
-    P3 --> Q2
-    P3 --> Q3
-```
-
-## Which operations are which
-
-| Narrow (no shuffle) | Wide (shuffle) |
-| --- | --- |
-| `select`, `withColumn`, `filter`/`where` | `groupBy` + agg, `distinct` |
-| `union`, `drop`, `cast` | `join` (unless broadcast) |
-| `coalesce` (reducing partitions) | `orderBy` / `sort` |
-| `map`, `flatMap` on RDDs | `repartition`, `repartitionByRange` |
-|  | window functions with `partitionBy` |
-
-Edge cases worth knowing: **broadcast join is narrow** (the small side is copied to every
-executor, big side never moves). `coalesce` is narrow but can shrink parallelism;
-`repartition` is always a full shuffle.
 
 ## Key takeaways
 
-- Every wide transformation = a stage boundary = shuffle write + network + shuffle read.
-- Chains of narrow ops are pipelined into a single stage — order them freely, they're one pass.
-- You can't avoid all shuffles (aggregation needs co-located keys); the goal is **fewer and
-  smaller**: filter and project *before* the shuffle, broadcast small join sides.
-- The Spark UI shows the cost directly: Stages tab → "Shuffle Read" / "Shuffle Write" columns.
+- `filter`, `select`, and many `withColumn` operations are usually narrow.
+- `groupBy`, `join`, `distinct`, `orderBy`, and `repartition` are usually wide.
+- Wide transformations create stage boundaries.
+- Narrow chains can be fused into one stage.
 
 ## Common mistakes
 
-- Using `repartition(n)` casually — it's a full shuffle of the entire dataset.
-- Using `distinct()` to "clean up" mid-pipeline when a targeted `dropDuplicates` on fewer columns
-  (or deduping after filtering) would shuffle far less data.
-- Assuming `groupByKey`-style patterns are fine because they work on samples — wide ops are where
-  scale problems hide.
-- Forgetting window functions with `partitionBy` shuffle just like `groupBy`.
+- Treating all transformations as equal cost.
+- Calling `repartition()` casually before every write.
+- Sorting large data without a reason.
+- Forgetting that a join usually shuffles both sides unless one side is broadcast.
 
 ## Interview angle
 
-*"Difference between narrow and wide transformations?"* is guaranteed at junior/mid level. Give
-the definition, two examples of each, and then the sentence that scores points: **"wide
-transformations create stage boundaries, and shuffle is usually the dominant cost, so
-optimization means minimizing data crossing those boundaries."** Follow-up trap:
-`coalesce` vs `repartition`.
+The standard answer: narrow means one input partition feeds one output partition; wide means many
+input partitions contribute to one output partition, requiring a shuffle and new stage.
 
-## Related in this repo
+## Related repo folders/files
 
 - [`01_fundamentals/06-narrow-vs-wide-transformations.md`](../01_fundamentals/06-narrow-vs-wide-transformations.md)
+- [`01_fundamentals/examples/04_narrow_wide_demo.py`](../01_fundamentals/examples/04_narrow_wide_demo.py)
 - [`01_fundamentals/diagrams/narrow-vs-wide.mmd`](../01_fundamentals/diagrams/narrow-vs-wide.mmd)
 - [`03_optimization/07-shuffle-tuning.md`](../03_optimization/07-shuffle-tuning.md)
-- Next page: [06 — Partitioning & shuffle](./06_partitioning_and_shuffle.md)

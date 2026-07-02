@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shuffle Animation</title>
+  <style>
+    body{margin:0;background:#fff;font-family:Arial,sans-serif}.wrap{max-width:980px;margin:0 auto;padding:24px}svg{width:100%;height:auto;border:1px solid #e8eaed;border-radius:8px}
+    .part{fill:#fff;stroke:#202124;stroke-width:2;rx:10}.shuffle{fill:#fff8e1;stroke:#f29900;stroke-width:2;rx:12}.out{fill:#f8fbff;stroke:#1a73e8;stroke-width:2;rx:10}.txt{font:16px Arial,sans-serif;fill:#202124}.small{font:13px Arial,sans-serif;fill:#5f6368}.path{stroke:#f29900;stroke-width:2;fill:none;stroke-dasharray:6 6}.rec{fill:#1a73e8;opacity:.9}
+    .r1{animation:move1 6s infinite}.r2{animation:move2 6s infinite .45s}.r3{animation:move3 6s infinite .9s}.r4{animation:move4 6s infinite 1.35s}
+    @keyframes move1{0%{transform:translate(135px,120px)}35%{transform:translate(450px,210px)}70%,100%{transform:translate(760px,120px)}}
+    @keyframes move2{0%{transform:translate(135px,220px)}35%{transform:translate(450px,220px)}70%,100%{transform:translate(760px,220px)}}
+    @keyframes move3{0%{transform:translate(135px,320px)}35%{transform:translate(450px,232px)}70%,100%{transform:translate(760px,320px)}}
+    @keyframes move4{0%{transform:translate(155px,120px)}35%{transform:translate(470px,210px)}70%,100%{transform:translate(785px,320px)}}
+    @media (prefers-reduced-motion:reduce){*{animation:none!important}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+<svg viewBox="0 0 920 430" role="img" aria-labelledby="title desc">
+  <title id="title">Spark shuffle animation</title>
+  <desc id="desc">Records move from input partitions through a shuffle exchange into output partitions grouped by key.</desc>
+  <text x="460" y="42" text-anchor="middle" class="txt" font-weight="700">Shuffle: records move so matching keys land together</text>
+  <rect x="60" y="90" width="170" height="70" class="part"/><text x="145" y="132" text-anchor="middle" class="txt">Input P1</text>
+  <rect x="60" y="190" width="170" height="70" class="part"/><text x="145" y="232" text-anchor="middle" class="txt">Input P2</text>
+  <rect x="60" y="290" width="170" height="70" class="part"/><text x="145" y="332" text-anchor="middle" class="txt">Input P3</text>
+  <rect x="360" y="175" width="190" height="95" class="shuffle"/><text x="455" y="214" text-anchor="middle" class="txt" font-weight="700">Shuffle exchange</text><text x="455" y="240" text-anchor="middle" class="small">network + disk</text>
+  <rect x="690" y="90" width="170" height="70" class="out"/><text x="775" y="132" text-anchor="middle" class="txt">Output A</text>
+  <rect x="690" y="190" width="170" height="70" class="out"/><text x="775" y="232" text-anchor="middle" class="txt">Output B/C</text>
+  <rect x="690" y="290" width="170" height="70" class="out"/><text x="775" y="332" text-anchor="middle" class="txt">Output D</text>
+  <path d="M230 125 C310 125,330 185,360 205" class="path"/><path d="M230 225 H360" class="path"/><path d="M230 325 C310 325,330 260,360 238" class="path"/><path d="M550 205 C620 180,640 125,690 125" class="path"/><path d="M550 225 H690" class="path"/><path d="M550 238 C620 260,640 325,690 325" class="path"/>
+  <circle r="9" class="rec r1"/><circle r="9" class="rec r2"/><circle r="9" class="rec r3"/><circle r="9" class="rec r4"/>
+</svg>
+</main>
+</body>
+</html>

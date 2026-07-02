@@ -1,92 +1,61 @@
-# 01 — Learning Roadmap
+# 01 - Learning Roadmap
 
-## Why this matters
+## Why it matters
 
-Spark has a reputation for being hard to learn. It isn't — it's hard to learn **in the wrong
-order**. If you touch `MERGE INTO` before you understand the shuffle, or tune AQE before you can
-read a DAG, everything feels like magic. This map shows the dependency order the whole repo is
-built around, so you always know where you are and what unlocks next.
+Spark has too many topics to learn randomly. A roadmap prevents two common failures: memorizing API
+syntax before understanding execution, and jumping into production tools before you can debug a
+single slow job.
 
-## The idea in plain English
+## Plain English explanation
 
-The repo is one path with four phases: get Spark running, understand the engine, use it daily,
-then run it in production. Each level builds on the previous one. Interview prep is not a phase —
-it runs alongside everything from Level 4 onward.
+Learn Spark in layers. First make the tools run. Then learn how Spark thinks: driver, executors,
+partitions, jobs, stages, and shuffles. After that, build daily PySpark skill, then performance,
+Delta Lake, streaming, production workflows, architecture, and interview practice.
 
-## Diagram
+## Mermaid diagram
 
 ```mermaid
 flowchart TB
-    subgraph P1["Phase 1 — Foundations"]
-        L0["Level 0: Setup<br/>00_setup"]
-        L1["Level 1: Fundamentals<br/>01_fundamentals"]
-    end
+    L0["Level 0<br/>Setup, Python, SQL, Java, Git"] --> L1["Level 1<br/>Spark fundamentals"]
+    L1 --> L2["Level 2<br/>Daily PySpark"]
+    L2 --> L3["Level 3<br/>Production data engineering"]
+    L3 --> L4["Level 4<br/>Optimization"]
+    L4 --> L5["Level 5<br/>Delta Lake"]
+    L5 --> L6["Level 6<br/>Structured Streaming"]
+    L6 --> L7["Level 7<br/>Databricks production"]
+    L7 --> L8["Level 8<br/>Cloud lakehouse architecture"]
+    L8 --> L9["Level 9<br/>Case studies and debugging"]
+    L9 --> L10["Level 10<br/>Certification and interviews"]
 
-    subgraph P2["Phase 2 — Daily PySpark"]
-        L2["Level 2: PySpark core<br/>02_pyspark_core"]
-        L4["Level 4: Optimization<br/>03_optimization"]
-    end
-
-    subgraph P3["Phase 3 — Production stack"]
-        L5["Level 5: Delta Lake<br/>04_delta_lake"]
-        L6["Level 6: Streaming<br/>05_streaming"]
-        L9["Level 9: Real projects<br/>06_real_projects"]
-    end
-
-    subgraph P4["Phase 4 — Platform and career"]
-        L7["Level 7: Databricks production<br/>15_databricks_production"]
-        L8["Level 8: Cloud and architecture<br/>10_architecture + 16_cloud_lakehouse"]
-        L10["Level 10: Interviews and cert<br/>07_interview_prep + 12_certification_prep"]
-    end
-
-    L0 --> L1 --> L2 --> L4
-    L4 --> L5 --> L6 --> L9
-    L9 --> L7 --> L8 --> L10
-```
-
-Two support tracks feed the main path — dip into them whenever a gap shows up:
-
-```mermaid
-flowchart LR
-    subgraph Support["Support tracks (use as needed)"]
-        SQL["17_sql_for_spark<br/>SQL fluency"]
-        PY["18_python_for_pyspark<br/>Python fluency"]
-        BOOKS["08_notes_from_books<br/>book summaries"]
-        DEBUG["13_debugging_playbook +<br/>14_spark_ui_lab"]
-    end
-
-    SQL --> Main["Main path<br/>Level 0 to 10"]
-    PY --> Main
-    BOOKS --> Main
-    DEBUG --> Main
+    L1 -.-> UI["Open Spark UI<br/>from the beginning"]
+    L4 -.-> UI
+    L9 -.-> UI
 ```
 
 ## Key takeaways
 
-- **Fundamentals before optimization.** You cannot tune a shuffle you don't understand.
-- **Optimization before Delta and streaming.** Both are built on the same engine mechanics.
-- **Projects before platform.** Build one end-to-end pipeline locally before learning
-  Databricks-specific tooling.
-- Track progress with the checkboxes in [`ROADMAP.md`](../ROADMAP.md); the study plans in
-  [`LEARNING_STRATEGY.md`](../LEARNING_STRATEGY.md) map this path onto 30/60/90-day schedules.
+- Execution model comes before API memorization.
+- Every level has a matching folder, runnable code, and failure mode.
+- The Spark UI is not an advanced topic. Start using it in fundamentals.
+- Interview prep is the last layer, but every page includes an interview angle.
 
 ## Common mistakes
 
-- Jumping straight to Databricks features (Auto Loader, DLT) without understanding the open-source
-  engine underneath — the first production incident exposes the gap.
-- Reading everything without running anything. The repo rule: **if you didn't run it and look at
-  the Spark UI, you didn't learn it.**
-- Treating interview prep as a final phase instead of spaced repetition alongside learning.
+- Starting with performance tuning before understanding shuffles.
+- Treating Delta Lake and streaming as isolated tools instead of extensions of Spark execution.
+- Reading notes without running examples.
+- Skipping troubleshooting until a real incident.
 
 ## Interview angle
 
-"Walk me through how you learned Spark" is a real interview question. A dependency-ordered answer
-(engine → API → optimization → storage → streaming → platform) signals structured thinking. Use
-this diagram as your answer skeleton.
+When asked how you learned Spark, describe a progression: architecture first, PySpark fluency
+second, then optimization, Delta, streaming, and production debugging. This sounds more credible
+than a list of disconnected libraries.
 
-## Related in this repo
+## Related repo folders/files
 
-- [`ROADMAP.md`](../ROADMAP.md) — the full checklist per level
-- [`LEARNING_STRATEGY.md`](../LEARNING_STRATEGY.md) — time-boxed study plans
-- [`BOOK_MAP.md`](../BOOK_MAP.md) — which book chapter backs each module
-- [`PROJECT_INDEX.md`](../PROJECT_INDEX.md) — portfolio projects per level
+- [`ROADMAP.md`](../ROADMAP.md)
+- [`LEARNING_STRATEGY.md`](../LEARNING_STRATEGY.md)
+- [`PROJECT_INDEX.md`](../PROJECT_INDEX.md)
+- [`00_setup/`](../00_setup/)
+- [`20_learning_strategy/`](../20_learning_strategy/)

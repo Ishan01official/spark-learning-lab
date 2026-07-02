@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" role="img" aria-labelledby="title desc">
+  <title id="title">Join strategy decision tree</title>
+  <desc id="desc">Spark join strategy choice from equi-join to broadcast or sort-merge join.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1a73e8"/></marker>
+    <style>.box{fill:#fff;stroke:#202124;stroke-width:2;rx:9}.good{fill:#f8fbff;stroke:#1a73e8;stroke-width:2;rx:9}.warn{fill:#fff5f5;stroke:#d93025;stroke-width:2;rx:9}.txt{font:16px Arial,sans-serif;fill:#202124}.small{font:13px Arial,sans-serif;fill:#5f6368}.arrow{stroke:#1a73e8;stroke-width:3;fill:none;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect width="900" height="480" fill="#fff"/>
+  <text x="450" y="42" text-anchor="middle" class="txt" font-weight="700">How Spark Chooses a Join</text>
+  <rect x="370" y="80" width="160" height="60" class="box"/><text x="450" y="116" text-anchor="middle" class="txt">Join request</text>
+  <rect x="350" y="185" width="200" height="70" class="box"/><text x="450" y="213" text-anchor="middle" class="txt">Equi-join?</text><text x="450" y="236" text-anchor="middle" class="small">key equality</text>
+  <rect x="90" y="325" width="210" height="75" class="warn"/><text x="195" y="357" text-anchor="middle" class="txt">Nested loop</text><text x="195" y="381" text-anchor="middle" class="small">avoid on big data</text>
+  <rect x="350" y="325" width="210" height="75" class="good"/><text x="455" y="357" text-anchor="middle" class="txt">Broadcast hash</text><text x="455" y="381" text-anchor="middle" class="small">small side copied</text>
+  <rect x="615" y="325" width="210" height="75" class="box"/><text x="720" y="357" text-anchor="middle" class="txt">Sort-merge</text><text x="720" y="381" text-anchor="middle" class="small">shuffle both sides</text>
+  <path d="M450 140 V185" class="arrow"/>
+  <path d="M350 220 C260 235,215 280,195 325" class="arrow"/><text x="250" y="272" class="small">no</text>
+  <path d="M450 255 V325" class="arrow"/><text x="468" y="292" class="small">small side</text>
+  <path d="M550 220 C650 235,700 280,720 325" class="arrow"/><text x="660" y="272" class="small">large sides</text>
+</svg>

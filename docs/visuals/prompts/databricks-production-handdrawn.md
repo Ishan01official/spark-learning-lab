@@ -4,7 +4,7 @@
 
 The journey from "works in my notebook" to "runs every night, governed and monitored" — as a
 four-checkpoint path. The image version of
-[diagram 18](../../../diagrams/18_databricks_production_workflow.md), and a gentle vaccination
+[diagram 17](../../../diagrams/17_databricks_production_workflow.md), and a gentle vaccination
 against notebook-cowboy culture.
 
 ## Final image-generation prompt

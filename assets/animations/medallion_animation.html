@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Medallion Architecture Animation</title>
+  <style>
+    body{margin:0;background:#fff;font-family:Arial,sans-serif}.wrap{max-width:980px;margin:0 auto;padding:24px}svg{width:100%;height:auto;border:1px solid #e8eaed;border-radius:8px}
+    .bronze{fill:#fff4e6;stroke:#a65f00;stroke-width:2;rx:14}.silver{fill:#f5f7fa;stroke:#5f6368;stroke-width:2;rx:14}.gold{fill:#fff8d6;stroke:#f29900;stroke-width:2;rx:14}.txt{font:16px Arial,sans-serif;fill:#202124}.small{font:13px Arial,sans-serif;fill:#5f6368}.line{stroke:#1a73e8;stroke-width:3;fill:none}.record{fill:#1a73e8;animation:record 6s infinite}.shine{animation:shine 6s infinite}
+    @keyframes record{0%{transform:translate(95px,210px);opacity:0}8%{opacity:1}30%{transform:translate(290px,210px)}58%{transform:translate(505px,210px)}86%,100%{transform:translate(720px,210px);opacity:0}}
+    @keyframes shine{0%,60%{opacity:.15}72%,92%{opacity:.55}100%{opacity:.15}}
+    @media (prefers-reduced-motion:reduce){*{animation:none!important}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+<svg viewBox="0 0 920 420" role="img" aria-labelledby="title desc">
+  <title id="title">Medallion architecture animation</title>
+  <desc id="desc">Records move from raw Bronze through clean Silver into business-ready Gold.</desc>
+  <text x="460" y="42" text-anchor="middle" class="txt" font-weight="700">Medallion Architecture: refine data by responsibility</text>
+  <path d="M150 210 H770" class="line"/>
+  <rect x="210" y="125" width="170" height="145" class="bronze"/><text x="295" y="173" text-anchor="middle" class="txt" font-weight="700">Bronze</text><text x="295" y="200" text-anchor="middle" class="small">raw, replayable</text><text x="295" y="224" text-anchor="middle" class="small">load checks</text>
+  <rect x="425" y="125" width="170" height="145" class="silver"/><text x="510" y="173" text-anchor="middle" class="txt" font-weight="700">Silver</text><text x="510" y="200" text-anchor="middle" class="small">clean, typed</text><text x="510" y="224" text-anchor="middle" class="small">deduped</text>
+  <rect x="640" y="125" width="170" height="145" class="gold"/><text x="725" y="173" text-anchor="middle" class="txt" font-weight="700">Gold</text><text x="725" y="200" text-anchor="middle" class="small">business-ready</text><text x="725" y="224" text-anchor="middle" class="small">serving</text>
+  <circle r="12" class="record"/>
+  <circle cx="725" cy="155" r="34" fill="#f29900" opacity=".15" class="shine"/>
+  <text x="460" y="330" text-anchor="middle" class="small">raw data -> trusted detail -> business metrics</text>
+</svg>
+</main>
+</body>
+</html>

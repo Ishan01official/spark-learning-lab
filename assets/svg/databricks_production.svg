@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">Databricks production workflow</title>
+  <desc id="desc">Notebook exploration moves into repo code, review, Databricks jobs, governed tables, monitoring, and promotion.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1a73e8"/></marker>
+    <style>.step{fill:#fff;stroke:#202124;stroke-width:2;rx:9}.gov{fill:#f8fbff;stroke:#1a73e8;stroke-width:2;rx:9}.warn{fill:#fff5f5;stroke:#d93025;stroke-width:2;rx:9}.txt{font:15px Arial,sans-serif;fill:#202124}.small{font:12px Arial,sans-serif;fill:#5f6368}.arrow{stroke:#1a73e8;stroke-width:3;fill:none;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect width="960" height="420" fill="#fff"/>
+  <text x="480" y="42" text-anchor="middle" class="txt" font-weight="700">Databricks Production Workflow</text>
+  <rect x="35" y="150" width="120" height="80" class="warn"/><text x="95" y="181" text-anchor="middle" class="txt">Notebook</text><text x="95" y="205" text-anchor="middle" class="small">explore only</text>
+  <rect x="190" y="150" width="120" height="80" class="step"/><text x="250" y="181" text-anchor="middle" class="txt">Repo code</text><text x="250" y="205" text-anchor="middle" class="small">modules/tests</text>
+  <rect x="345" y="150" width="120" height="80" class="step"/><text x="405" y="181" text-anchor="middle" class="txt">PR + CI</text><text x="405" y="205" text-anchor="middle" class="small">review</text>
+  <rect x="500" y="150" width="120" height="80" class="gov"/><text x="560" y="181" text-anchor="middle" class="txt">Job cluster</text><text x="560" y="205" text-anchor="middle" class="small">policy/runtime</text>
+  <rect x="655" y="150" width="120" height="80" class="gov"/><text x="715" y="181" text-anchor="middle" class="txt">Unity Catalog</text><text x="715" y="205" text-anchor="middle" class="small">tables/access</text>
+  <rect x="810" y="150" width="120" height="80" class="step"/><text x="870" y="181" text-anchor="middle" class="txt">Monitoring</text><text x="870" y="205" text-anchor="middle" class="small">runs/alerts</text>
+  <path d="M155 190 H190" class="arrow"/><path d="M310 190 H345" class="arrow"/><path d="M465 190 H500" class="arrow"/><path d="M620 190 H655" class="arrow"/><path d="M775 190 H810" class="arrow"/>
+  <text x="95" y="280" text-anchor="middle" class="small" fill="#d93025">not manual prod</text>
+  <text x="560" y="280" text-anchor="middle" class="small">scheduled, repeatable</text>
+  <text x="715" y="280" text-anchor="middle" class="small">governed data</text>
+</svg>

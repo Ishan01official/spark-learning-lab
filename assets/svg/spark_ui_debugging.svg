@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img" aria-labelledby="title desc">
+  <title id="title">Spark UI debugging</title>
+  <desc id="desc">Map symptoms to Spark UI tabs and likely fixes.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1a73e8"/></marker>
+    <style>.sym{fill:#fff5f5;stroke:#d93025;stroke-width:2;rx:10}.tab{fill:#f8fbff;stroke:#1a73e8;stroke-width:2;rx:10}.fix{fill:#fff;stroke:#202124;stroke-width:2;rx:10}.txt{font:16px Arial,sans-serif;fill:#202124}.small{font:13px Arial,sans-serif;fill:#5f6368}.arrow{stroke:#1a73e8;stroke-width:3;fill:none;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect width="900" height="470" fill="#fff"/>
+  <text x="450" y="42" text-anchor="middle" class="txt" font-weight="700">Spark UI Debugging Path</text>
+  <rect x="55" y="80" width="180" height="70" class="sym"/><text x="145" y="112" text-anchor="middle" class="txt">Slow job</text><text x="145" y="136" text-anchor="middle" class="small">where is time spent?</text>
+  <rect x="55" y="200" width="180" height="70" class="sym"/><text x="145" y="232" text-anchor="middle" class="txt">Failure</text><text x="145" y="256" text-anchor="middle" class="small">what failed first?</text>
+  <rect x="55" y="320" width="180" height="70" class="sym"/><text x="145" y="352" text-anchor="middle" class="txt">OOM or spill</text><text x="145" y="376" text-anchor="middle" class="small">which executor?</text>
+  <rect x="360" y="70" width="170" height="65" class="tab"/><text x="445" y="109" text-anchor="middle" class="txt">Jobs tab</text>
+  <rect x="360" y="155" width="170" height="65" class="tab"/><text x="445" y="194" text-anchor="middle" class="txt">Stages tab</text>
+  <rect x="360" y="240" width="170" height="65" class="tab"/><text x="445" y="279" text-anchor="middle" class="txt">SQL tab</text>
+  <rect x="360" y="325" width="170" height="65" class="tab"/><text x="445" y="364" text-anchor="middle" class="txt">Executors tab</text>
+  <rect x="650" y="130" width="190" height="90" class="fix"/><text x="745" y="164" text-anchor="middle" class="txt">Evidence</text><text x="745" y="188" text-anchor="middle" class="small">stragglers, shuffle, plan</text>
+  <rect x="650" y="280" width="190" height="90" class="fix"/><text x="745" y="314" text-anchor="middle" class="txt">Fix and verify</text><text x="745" y="338" text-anchor="middle" class="small">rerun, compare metrics</text>
+  <path d="M235 115 H360" class="arrow"/><path d="M235 235 C285 225,315 200,360 188" class="arrow"/><path d="M235 355 H360" class="arrow"/>
+  <path d="M530 103 C590 110,615 135,650 160" class="arrow"/><path d="M530 188 C590 188,615 180,650 175" class="arrow"/><path d="M530 273 C590 255,615 220,650 195" class="arrow"/><path d="M530 358 C590 340,615 325,650 325" class="arrow"/>
+  <path d="M745 220 V280" class="arrow"/>
+</svg>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Structured Streaming Animation</title>
+  <style>
+    body{margin:0;background:#fff;font-family:Arial,sans-serif}.wrap{max-width:980px;margin:0 auto;padding:24px}svg{width:100%;height:auto;border:1px solid #e8eaed;border-radius:8px}
+    .box{fill:#fff;stroke:#202124;stroke-width:2;rx:10}.state{fill:#fff8e1;stroke:#f29900;stroke-width:2;rx:10}.engine{fill:#f8fbff;stroke:#1a73e8;stroke-width:2;rx:10}.txt{font:16px Arial,sans-serif;fill:#202124}.small{font:13px Arial,sans-serif;fill:#5f6368}.line{stroke:#1a73e8;stroke-width:3;fill:none}.batch{fill:#1a73e8;animation:batch 5s infinite}.checkpoint{animation:pulse 5s infinite}
+    @keyframes batch{0%{transform:translate(110px,205px);opacity:0}10%{opacity:1}35%{transform:translate(325px,205px)}62%{transform:translate(540px,205px)}85%,100%{transform:translate(765px,205px);opacity:0}}
+    @keyframes pulse{0%,45%,100%{stroke-width:2;fill:#fff8e1}55%,75%{stroke-width:4;fill:#fff0c2}}
+    @media (prefers-reduced-motion:reduce){*{animation:none!important}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+<svg viewBox="0 0 920 420" role="img" aria-labelledby="title desc">
+  <title id="title">Structured Streaming micro-batch animation</title>
+  <desc id="desc">A micro-batch moves from source to processing to sink while checkpoint state is updated.</desc>
+  <text x="460" y="42" text-anchor="middle" class="txt" font-weight="700">Structured Streaming: process, checkpoint, repeat</text>
+  <path d="M135 205 H785" class="line"/>
+  <rect x="55" y="165" width="150" height="80" class="box"/><text x="130" y="198" text-anchor="middle" class="txt">Source</text><text x="130" y="222" text-anchor="middle" class="small">new offsets</text>
+  <rect x="265" y="155" width="160" height="100" class="engine"/><text x="345" y="194" text-anchor="middle" class="txt">Micro-batch</text><text x="345" y="220" text-anchor="middle" class="small">Spark job</text>
+  <rect x="485" y="155" width="160" height="100" class="box"/><text x="565" y="194" text-anchor="middle" class="txt">Processing</text><text x="565" y="220" text-anchor="middle" class="small">logic + state</text>
+  <rect x="715" y="165" width="150" height="80" class="box"/><text x="790" y="198" text-anchor="middle" class="txt">Sink</text><text x="790" y="222" text-anchor="middle" class="small">Delta/Kafka</text>
+  <rect x="360" y="300" width="210" height="65" class="state checkpoint"/><text x="465" y="328" text-anchor="middle" class="txt">Checkpoint</text><text x="465" y="350" text-anchor="middle" class="small">offsets, commits, state</text>
+  <circle r="12" class="batch"/>
+</svg>
+</main>
+</body>
+</html>

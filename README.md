@@ -34,24 +34,26 @@ For the full end-to-end view of how data enters Spark, how the driver and execut
 
 ## Visual learning
 
-Every core concept in this repo has a visual explainer. Two complementary systems:
+Every core concept in this repo has a visual explainer. Use the visual assets as a study loop:
+read the diagram, run the code, open the Spark UI, then redraw the idea from memory.
 
-- **[`diagrams/`](./diagrams/README.md)** — 20 numbered concept pages, one per big idea
-  (architecture, DAG, shuffle, joins, skew, Delta internals, streaming, medallion, Spark UI
-  triage, Databricks, lakehouse, interview map). Each page: why it matters → plain-English
-  explanation → GitHub-rendered Mermaid diagram → key takeaways → common mistakes → interview
-  angle → links back into the module notes. Read the page *before* its module; redraw the diagram
-  from memory *after*.
-- **[`docs/visuals/`](./docs/visuals/README.md)** — hand-drawn illustration prompts for the eight
-  most metaphor-friendly concepts (notebook-sketch style: white paper, rough black pen, red/blue
-  accents). Paste a prompt into an image model, review against its checklist, and embed the result
-  in READMEs, talks, or posts.
+- **[`diagrams/`](./diagrams/README.md)** — 19 numbered Mermaid concept pages for GitHub Markdown:
+  roadmap, architecture, driver/executor flow, lazy evaluation, DAG/stages/tasks, narrow vs wide,
+  shuffle, joins, skew, Catalyst/Tungsten/AQE, Delta Lake, streaming, medallion architecture,
+  Spark UI debugging, Databricks production, cloud lakehouse, and certification prep.
+- **[`docs/visuals/hand_drawn_prompts/`](./docs/visuals/hand_drawn_prompts/)** — hand-drawn
+  illustration prompt files with white-paper, rough black pen, red/blue annotation style. Use them
+  to generate notebook-style teaching images without turning concepts into dense infographics.
+- **[`assets/svg/`](./assets/svg/README.md)** — lightweight static SVG explainers that can be
+  embedded directly in Markdown or opened in a browser.
+- **[`assets/animations/`](./assets/animations/README.md)** — self-contained animated HTML/SVG
+  explainers for lazy evaluation, shuffle, Delta Lake, streaming, and medallion architecture.
 
-Suggested entry points: [Spark architecture](./diagrams/02_spark_architecture.md) →
-[lazy evaluation & DAG](./diagrams/04_lazy_evaluation_and_dag.md) →
-[narrow vs wide](./diagrams/05_narrow_vs_wide_transformations.md) →
-[partitioning & shuffle](./diagrams/06_partitioning_and_shuffle.md). The full index with the
-recommended order is in [`diagrams/README.md`](./diagrams/README.md).
+Suggested entry points: [Spark architecture](./diagrams/02_spark_architecture.md) ->
+[lazy evaluation and DAG](./diagrams/04_lazy_evaluation_and_dag.md) ->
+[partitioning and shuffle](./diagrams/06_partitioning_and_shuffle.md) ->
+[Spark UI debugging](./diagrams/16_spark_ui_debugging.md). The full visual index is in
+[`diagrams/README.md`](./diagrams/README.md).
 
 ## Repository layout
 
@@ -79,8 +81,10 @@ spark-learning-lab/
 ├── 19_resources/            # Resource notes; see RESOURCE_MAP.md.
 ├── 20_learning_strategy/    # Study plans and revision strategy.
 ├── data/                    # Tiny sample datasets used by examples.
-├── diagrams/                # 20 visual concept pages (Mermaid, renders on GitHub).
+├── diagrams/                # 19 visual concept pages (Mermaid, renders on GitHub).
 ├── docs/visuals/            # Hand-drawn illustration prompts + style guide.
+├── assets/svg/              # Static SVG explainers.
+├── assets/animations/       # Self-contained HTML/SVG animated explainers.
 ├── BOOK_MAP.md
 ├── RESOURCE_MAP.md
 ├── INTERVIEW_BANK.md

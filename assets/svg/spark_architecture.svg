@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">Spark architecture</title>
+  <desc id="desc">Driver plans work, cluster manager allocates resources, executors process partitions and shuffle data, storage holds files.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1a73e8"/></marker>
+    <marker id="warn" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#d93025"/></marker>
+    <style>
+      .box{fill:#fff;stroke:#202124;stroke-width:2;rx:10}.soft{fill:#f8fbff;stroke:#1a73e8;stroke-width:2;rx:10}
+      .store{fill:#fff8e1;stroke:#f29900;stroke-width:2;rx:10}.txt{font:16px Arial,sans-serif;fill:#202124}.small{font:13px Arial,sans-serif;fill:#5f6368}
+      .blue{stroke:#1a73e8;stroke-width:3;fill:none;marker-end:url(#arrow)}.red{stroke:#d93025;stroke-width:3;fill:none;stroke-dasharray:7 5;marker-end:url(#warn)}
+    </style>
+  </defs>
+  <rect width="900" height="520" fill="#ffffff"/>
+  <text x="450" y="42" text-anchor="middle" class="txt" font-weight="700">Spark Architecture</text>
+  <rect x="70" y="120" width="210" height="140" class="soft"/>
+  <text x="175" y="160" text-anchor="middle" class="txt" font-weight="700">Driver</text>
+  <text x="175" y="190" text-anchor="middle" class="small">SparkSession</text>
+  <text x="175" y="214" text-anchor="middle" class="small">Catalyst + DAG scheduler</text>
+  <rect x="345" y="125" width="210" height="95" class="box"/>
+  <text x="450" y="165" text-anchor="middle" class="txt" font-weight="700">Cluster manager</text>
+  <text x="450" y="190" text-anchor="middle" class="small">allocates resources</text>
+  <rect x="630" y="90" width="190" height="80" class="box"/>
+  <rect x="630" y="205" width="190" height="80" class="box"/>
+  <rect x="630" y="320" width="190" height="80" class="box"/>
+  <text x="725" y="124" text-anchor="middle" class="txt" font-weight="700">Executor 1</text>
+  <text x="725" y="148" text-anchor="middle" class="small">tasks + cache</text>
+  <text x="725" y="239" text-anchor="middle" class="txt" font-weight="700">Executor 2</text>
+  <text x="725" y="263" text-anchor="middle" class="small">tasks + cache</text>
+  <text x="725" y="354" text-anchor="middle" class="txt" font-weight="700">Executor N</text>
+  <text x="725" y="378" text-anchor="middle" class="small">tasks + cache</text>
+  <rect x="310" y="365" width="250" height="80" class="store"/>
+  <text x="435" y="400" text-anchor="middle" class="txt" font-weight="700">Distributed storage</text>
+  <text x="435" y="424" text-anchor="middle" class="small">Delta, Parquet, cloud object storage</text>
+  <path d="M280 170 C305 160,320 160,345 165" class="blue"/>
+  <path d="M555 170 C585 140,600 128,630 128" class="blue"/>
+  <path d="M555 175 C585 210,600 235,630 245" class="blue"/>
+  <path d="M555 185 C585 280,600 350,630 360" class="blue"/>
+  <path d="M650 175 C590 310,530 350,500 365" class="blue"/>
+  <path d="M650 290 C590 340,555 355,510 365" class="blue"/>
+  <path d="M725 170 C760 180,760 195,725 205" class="red"/>
+  <text x="782" y="193" class="small" fill="#d93025">shuffle</text>
+</svg>

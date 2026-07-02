@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" role="img" aria-labelledby="title desc">
+  <title id="title">DAG flow</title>
+  <desc id="desc">An action creates a job, shuffle boundaries split stages, and each stage runs tasks over partitions.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1a73e8"/></marker>
+    <marker id="redArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#d93025"/></marker>
+    <style>.box{fill:#fff;stroke:#202124;stroke-width:2;rx:8}.stage{fill:#f8fbff;stroke:#1a73e8;stroke-width:2;rx:10}.task{fill:#fff;stroke:#5f6368;stroke-width:1.5;rx:5}.txt{font:16px Arial,sans-serif;fill:#202124}.small{font:13px Arial,sans-serif;fill:#5f6368}.blue{stroke:#1a73e8;stroke-width:3;fill:none;marker-end:url(#arrow)}.red{stroke:#d93025;stroke-width:3;fill:none;marker-end:url(#redArrow)}</style>
+  </defs>
+  <rect width="900" height="460" fill="#fff"/>
+  <text x="450" y="42" text-anchor="middle" class="txt" font-weight="700">Action -> Job -> Stages -> Tasks</text>
+  <rect x="55" y="92" width="130" height="70" class="box"/><text x="120" y="132" text-anchor="middle" class="txt">Action</text>
+  <rect x="245" y="92" width="130" height="70" class="box"/><text x="310" y="132" text-anchor="middle" class="txt">Job 0</text>
+  <path d="M185 127 H245" class="blue"/>
+  <rect x="470" y="70" width="170" height="135" class="stage"/><text x="555" y="105" text-anchor="middle" class="txt" font-weight="700">Stage 0</text><text x="555" y="130" text-anchor="middle" class="small">narrow operations</text>
+  <rect x="700" y="255" width="170" height="135" class="stage"/><text x="785" y="290" text-anchor="middle" class="txt" font-weight="700">Stage 1</text><text x="785" y="315" text-anchor="middle" class="small">after shuffle</text>
+  <path d="M375 127 H470" class="blue"/>
+  <path d="M640 162 C690 190,720 220,745 255" class="red"/>
+  <text x="700" y="198" class="small" fill="#d93025">shuffle boundary</text>
+  <rect x="500" y="152" width="45" height="30" class="task"/><rect x="555" y="152" width="45" height="30" class="task"/>
+  <text x="550" y="224" text-anchor="middle" class="small">tasks per input partition</text>
+  <rect x="730" y="337" width="45" height="30" class="task"/><rect x="785" y="337" width="45" height="30" class="task"/>
+  <text x="785" y="410" text-anchor="middle" class="small">tasks per shuffle partition</text>
+</svg>

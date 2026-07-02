@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 450" role="img" aria-labelledby="title desc">
+  <title id="title">Shuffle flow</title>
+  <desc id="desc">Input partitions are shuffled by key into output partitions.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#f29900"/></marker>
+    <style>.part{fill:#fff;stroke:#202124;stroke-width:2;rx:8}.shuffle{fill:#fff8e1;stroke:#f29900;stroke-width:2;rx:12}.out{fill:#f8fbff;stroke:#1a73e8;stroke-width:2;rx:8}.txt{font:16px Arial,sans-serif;fill:#202124}.small{font:13px Arial,sans-serif;fill:#5f6368}.arrow{stroke:#f29900;stroke-width:3;fill:none;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect width="900" height="450" fill="#fff"/>
+  <text x="450" y="42" text-anchor="middle" class="txt" font-weight="700">Shuffle Repartitions Records by Key</text>
+  <rect x="60" y="90" width="160" height="70" class="part"/><text x="140" y="122" text-anchor="middle" class="txt">Partition 1</text><text x="140" y="145" text-anchor="middle" class="small">A B C</text>
+  <rect x="60" y="190" width="160" height="70" class="part"/><text x="140" y="222" text-anchor="middle" class="txt">Partition 2</text><text x="140" y="245" text-anchor="middle" class="small">B C D</text>
+  <rect x="60" y="290" width="160" height="70" class="part"/><text x="140" y="322" text-anchor="middle" class="txt">Partition 3</text><text x="140" y="345" text-anchor="middle" class="small">A D D</text>
+  <rect x="360" y="175" width="180" height="100" class="shuffle"/><text x="450" y="215" text-anchor="middle" class="txt" font-weight="700">Shuffle exchange</text><text x="450" y="242" text-anchor="middle" class="small">hash by key</text>
+  <rect x="680" y="90" width="160" height="70" class="out"/><text x="760" y="122" text-anchor="middle" class="txt">Output A</text><text x="760" y="145" text-anchor="middle" class="small">all A records</text>
+  <rect x="680" y="190" width="160" height="70" class="out"/><text x="760" y="222" text-anchor="middle" class="txt">Output B/C</text><text x="760" y="245" text-anchor="middle" class="small">all B and C</text>
+  <rect x="680" y="290" width="160" height="70" class="out"/><text x="760" y="322" text-anchor="middle" class="txt">Output D</text><text x="760" y="345" text-anchor="middle" class="small">all D records</text>
+  <path d="M220 125 C280 125,300 190,360 208" class="arrow"/><path d="M220 225 H360" class="arrow"/><path d="M220 325 C290 325,305 260,360 242" class="arrow"/>
+  <path d="M540 208 C600 190,620 125,680 125" class="arrow"/><path d="M540 225 H680" class="arrow"/><path d="M540 242 C600 260,620 325,680 325" class="arrow"/>
+</svg>

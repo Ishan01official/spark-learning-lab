@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lazy Evaluation Animation</title>
+  <style>
+    body{margin:0;background:#fff;font-family:Arial,sans-serif;color:#202124}
+    .wrap{max-width:980px;margin:0 auto;padding:24px}
+    svg{width:100%;height:auto;border:1px solid #e8eaed;border-radius:8px}
+    .box{fill:#fff;stroke:#202124;stroke-width:2;rx:10}.action{fill:#fff5f5;stroke:#d93025;stroke-width:2;rx:10}.job{fill:#f8fbff;stroke:#1a73e8;stroke-width:2;rx:10}
+    .txt{font:16px Arial,sans-serif;fill:#202124}.small{font:13px Arial,sans-serif;fill:#5f6368}.arrow{stroke:#1a73e8;stroke-width:3;fill:none;marker-end:url(#arrow)}
+    .step{opacity:0;animation:appear 8s infinite}.s1{animation-delay:.2s}.s2{animation-delay:1s}.s3{animation-delay:1.8s}.s4{animation-delay:2.6s}.run{opacity:0;animation:run 8s infinite 4s}.pulse{animation:pulse 8s infinite 3.4s;transform-origin:745px 165px}
+    @keyframes appear{0%,8%{opacity:0;transform:translateY(8px)}14%,88%{opacity:1;transform:translateY(0)}100%{opacity:0}}
+    @keyframes run{0%,12%{opacity:0;transform:translateY(10px)}20%,82%{opacity:1;transform:translateY(0)}100%{opacity:0}}
+    @keyframes pulse{0%,10%,100%{transform:scale(1)}15%,24%{transform:scale(1.05)}}
+    @media (prefers-reduced-motion:reduce){*{animation:none!important}.step,.run{opacity:1}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+<svg viewBox="0 0 920 430" role="img" aria-labelledby="title desc">
+  <title id="title">Spark lazy evaluation animation</title>
+  <desc id="desc">Transformations appear as plan steps. The action pulses, then execution appears as a job.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1a73e8"/></marker></defs>
+  <text x="460" y="42" text-anchor="middle" class="txt" font-weight="700">Lazy Evaluation: nothing runs until an action</text>
+  <g class="step s1"><rect x="50" y="130" width="125" height="70" class="box"/><text x="112" y="171" text-anchor="middle" class="txt">read</text></g>
+  <g class="step s2"><rect x="215" y="130" width="125" height="70" class="box"/><text x="278" y="171" text-anchor="middle" class="txt">filter</text><path d="M175 165 H215" class="arrow"/></g>
+  <g class="step s3"><rect x="380" y="130" width="125" height="70" class="box"/><text x="443" y="171" text-anchor="middle" class="txt">select</text><path d="M340 165 H380" class="arrow"/></g>
+  <g class="step s4"><rect x="545" y="130" width="125" height="70" class="box"/><text x="608" y="171" text-anchor="middle" class="txt">groupBy</text><path d="M505 165 H545" class="arrow"/></g>
+  <g class="pulse"><rect x="710" y="115" width="140" height="100" class="action"/><text x="780" y="156" text-anchor="middle" class="txt" font-weight="700">ACTION</text><text x="780" y="182" text-anchor="middle" class="small">write/count/show</text></g>
+  <path d="M670 165 H710" class="arrow"/>
+  <g class="run"><path d="M780 215 C780 270,700 287,610 305" class="arrow"/><rect x="310" y="295" width="300" height="70" class="job"/><text x="460" y="326" text-anchor="middle" class="txt" font-weight="700">Spark job executes</text><text x="460" y="350" text-anchor="middle" class="small">DAG -> stages -> tasks</text></g>
+</svg>
+</main>
+</body>
+</html>

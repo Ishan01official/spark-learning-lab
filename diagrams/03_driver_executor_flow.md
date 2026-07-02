@@ -1,88 +1,65 @@
-# 03 — Driver–Executor Flow
+# 03 - Driver Executor Flow
 
-## Why this matters
+## Why it matters
 
-Knowing *what* the driver and executors are is static knowledge. Knowing *when* each one acts —
-from `spark-submit` to the final result — is what lets you answer "where did my job spend its
-time?" and "which process actually threw that error?".
+Spark feels mysterious until you know the lifecycle of one application. This page connects your
+Python file to the actual distributed work that appears in the Spark UI.
 
-## The idea in plain English
+## Plain English explanation
 
-The driver never processes data; it plans and coordinates. An application starts, resources get
-allocated, and then a loop repeats for every action in your code: build a job, split it into
-stages and tasks, send tasks to executors, collect results. Executors heartbeat back the whole
-time so the driver knows who is alive.
+You start a Spark application. The driver creates a session and builds a plan. When an action runs,
+the driver asks the cluster for executors, splits the plan into tasks, sends those tasks to
+executors, and collects only the small metadata or final result needed by the action.
 
-## Diagram — application lifecycle
+## Mermaid diagram
 
 ```mermaid
 sequenceDiagram
-    participant U as You (spark-submit / notebook)
-    participant D as Driver
+    participant User as User or scheduler
+    participant Driver as Driver
     participant CM as Cluster manager
-    participant E as Executors
+    participant Exec as Executors
+    participant Store as Storage
+    participant UI as Spark UI
 
-    U->>D: start application (SparkSession)
-    D->>CM: request executor containers
-    CM->>E: launch executor JVMs
-    E->>D: register (cores, memory)
-
-    Note over D: your code runs, builds plans lazily
-
-    U->>D: action called, e.g. df.write / count()
-    D->>D: plan job, split into stages and tasks
-    D->>E: send tasks (one per partition)
-    E->>E: run tasks, shuffle between executors
-    E->>D: task results and metrics
-    D->>U: result / files written
-
-    loop every few seconds
-        E->>D: heartbeat
-    end
-
-    U->>D: spark.stop()
-    D->>CM: release executors
-```
-
-## Diagram — who fails how
-
-```mermaid
-flowchart TB
-    TF["Task fails"] -->|"retried on another executor<br/>up to 4 times"| OK1["Job usually survives"]
-    EF["Executor dies"] -->|"tasks rescheduled,<br/>cached and shuffle data on it is lost"| OK2["Job survives, slower<br/>(recompute / refetch)"]
-    DF["Driver dies"] --> DEAD["Application dies.<br/>No recovery within the app."]
+    User->>Driver: start PySpark application
+    Driver->>Driver: create SparkSession
+    Driver->>Driver: build lazy logical plan
+    User->>Driver: call action
+    Driver->>CM: request executor resources
+    CM-->>Driver: executors available
+    Driver->>Exec: send serialized tasks
+    Exec->>Store: read partitions
+    Exec->>Exec: transform, shuffle, cache if needed
+    Exec->>Store: write output or return small result
+    Exec-->>Driver: task status and metrics
+    Driver->>UI: expose jobs, stages, tasks, SQL metrics
+    Driver-->>User: action completes or raises error
 ```
 
 ## Key takeaways
 
-- Nothing runs on executors until an **action** fires. Ten transformations = zero cluster work.
-- One task per partition per stage. 200 partitions → 200 tasks → parallelism capped by total
-  executor cores.
-- Task failures are cheap (retried), executor failures are survivable (lineage recompute),
-  driver failure is fatal — so protect the driver: no huge `collect()`, no giant broadcast
-  variables, sensible `spark.driver.memory`.
-- Heartbeats explain timeout-style errors: a GC-frozen executor misses heartbeats and gets marked
-  dead even though it never "crashed".
+- Transformations build a plan on the driver.
+- Actions force the driver to schedule real executor work.
+- Executors report metrics back to the driver; those metrics power the Spark UI.
+- Driver logs often explain planning errors; executor logs explain task failures.
 
 ## Common mistakes
 
-- Reading executor logs for a planning error (e.g. `AnalysisException`) that happened on the
-  driver — or driver logs for a task OOM that happened on an executor.
-- Assuming a "lost executor" message means a bug. On spot/preemptible nodes it's routine; the
-  question is how expensive the recomputation was.
-- Calling `collect()` "to check the data" on a wide table. Use `show()`, `limit()`, or write a
-  sample instead.
+- Looking only at Python stack traces and ignoring executor logs.
+- Thinking one action always equals one stage. It usually equals one job with one or more stages.
+- Using local mode and forgetting that production has real network, storage, and resource delays.
+- Returning huge results to the driver instead of writing distributed output.
 
 ## Interview angle
 
-Classic sequence question: *"What happens, step by step, when you run a Spark job?"* Answer in
-lifecycle order: session → resource allocation → lazy plan → action → job → stages → tasks →
-shuffle → result. Then the follow-up everyone gets: *"What happens if an executor is lost?"* —
-tasks rescheduled, shuffle/cache data recomputed from lineage, job continues.
+If asked what happens when `df.count()` runs, answer in lifecycle order: plan already exists,
+action creates a job, the driver schedules stages and tasks, executors read partitions, metrics
+return to the driver, and the result is a small number.
 
-## Related in this repo
+## Related repo folders/files
 
 - [`01_fundamentals/02-job-stage-task.md`](../01_fundamentals/02-job-stage-task.md)
-- [`01_fundamentals/07-actions-vs-transformations.md`](../01_fundamentals/07-actions-vs-transformations.md)
-- [`01_fundamentals/diagrams/driver-executor.mmd`](../01_fundamentals/diagrams/driver-executor.mmd)
-- [`13_debugging_playbook/01_failure_triage.md`](../13_debugging_playbook/01_failure_triage.md)
+- [`00_setup/05-first-pyspark-program.md`](../00_setup/05-first-pyspark-program.md)
+- [`14_spark_ui_lab/01_jobs_stages_tasks.md`](../14_spark_ui_lab/01_jobs_stages_tasks.md)
+- [`TROUBLESHOOTING.md`](../TROUBLESHOOTING.md)

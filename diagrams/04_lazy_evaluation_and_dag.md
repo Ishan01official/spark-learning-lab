@@ -1,79 +1,58 @@
-# 04 — Lazy Evaluation & the DAG
+# 04 - Lazy Evaluation and DAG
 
-## Why this matters
+## Why it matters
 
-Lazy evaluation is the single most confusing thing for newcomers ("my code ran instantly!") and
-the single most powerful thing for the engine (it can optimize the *whole* pipeline before running
-anything). Understanding job → stage → task is also the key to reading the Spark UI — the numbers
-on the Jobs and Stages tabs are exactly this diagram.
+Lazy evaluation explains why transformations appear to run instantly, why errors often appear at
+actions, and why Spark can optimize several operations as one plan.
 
-## The idea in plain English
+## Plain English explanation
 
-Transformations (`filter`, `select`, `groupBy`, `join`, …) don't run anything — they build a
-recipe. Only an **action** (`count`, `collect`, `show`, `write`) says "cook it now". At that
-moment Spark turns the recipe into a **DAG** (directed acyclic graph), cuts it into **stages**
-wherever data must move between executors (a shuffle), and runs one **task** per partition inside
-each stage.
+Transformations are a recipe. Actions are the moment Spark cooks. When an action runs, Spark turns
+the recipe into a DAG, cuts it into stages at shuffle boundaries, and runs one task per partition
+inside each stage.
 
-## Diagram — nothing happens until the action
+## Mermaid diagram
 
 ```mermaid
 flowchart LR
-    subgraph Lazy["Lazy: builds a plan, runs nothing"]
-        R["spark.read.parquet"] --> F["filter"] --> W["withColumn"] --> G["groupBy + agg"]
+    subgraph Lazy["Lazy plan building"]
+        Read["spark.read.parquet"] --> Filter["filter"]
+        Filter --> Select["select columns"]
+        Select --> Add["withColumn"]
+        Add --> Group["groupBy"]
     end
-    G --> A["ACTION: write / count / show"]
-    A -->|"triggers"| J["Job: optimized plan<br/>executed on the cluster"]
+
+    Group --> Action["Action<br/>count, show, collect, write"]
+    Action --> Job["Spark job"]
+    Job --> Stage1["Stage 0<br/>read + narrow ops"]
+    Stage1 -->|"shuffle boundary"| Stage2["Stage 1<br/>aggregate by key"]
+    Stage1 --> Tasks1["tasks = input partitions"]
+    Stage2 --> Tasks2["tasks = shuffle partitions"]
 ```
-
-## Diagram — one action becomes jobs, stages, tasks
-
-```mermaid
-flowchart TB
-    A["Action: df.write"] --> JOB["Job 0"]
-
-    JOB --> S1["Stage 0 — read + filter + withColumn<br/>narrow ops, pipelined together"]
-    JOB --> S2["Stage 1 — aggregate after shuffle"]
-
-    S1 -->|"shuffle boundary<br/>(groupBy repartitions by key)"| S2
-
-    S1 --> T1["Task per input partition<br/>e.g. 8 partitions = 8 tasks"]
-    S2 --> T2["Task per shuffle partition<br/>default 200 tasks"]
-```
-
-Read it as: **1 action → 1 job → stages split at shuffles → tasks = partitions.**
 
 ## Key takeaways
 
-- Laziness lets Catalyst optimize the whole chain: push filters down to the file scan, prune
-  unused columns, collapse consecutive maps into one pass.
-- All narrow operations between two shuffles are **pipelined into one stage** — one pass over the
-  data, no intermediate materialization.
-- The DAG is also the fault-tolerance story: lost data is recomputed from lineage, not restored
-  from replicas.
-- Each action re-executes the plan from scratch. Two actions on the same expensive DataFrame =
-  computed twice — that is exactly what `cache()` is for.
+- Transformations do not execute until an action appears.
+- A shuffle creates a new stage.
+- Tasks are tied to partitions.
+- Two actions on the same uncached DataFrame can recompute the same lineage twice.
+- `df.explain()` lets you inspect the plan before paying for execution.
 
 ## Common mistakes
 
-- Timing a transformation and concluding "Spark is fast" — you timed plan-building, not work.
-- Putting a `count()` after every step "to check progress" — each one is a full job.
-- Expecting an error at the line with the bad code. Lazy evaluation surfaces many errors only at
-  the action, far from the cause. Use `df.explain()` and schema checks early.
-- Confusing job (per action), stage (per shuffle segment), and task (per partition) — the UI
-  makes no sense until these are distinct in your head.
+- Benchmarking a transformation line and thinking Spark processed data.
+- Adding `count()` after every step and accidentally launching many full jobs.
+- Forgetting to cache reused expensive DataFrames.
+- Confusing DAG, job, stage, and task.
 
 ## Interview angle
 
-*"Why is Spark lazy?"* — so the optimizer sees the whole query before choosing a plan, and so
-narrow operations can be pipelined without materializing intermediates. *"What creates a stage
-boundary?"* — a shuffle (wide dependency). Strong candidates connect it to the UI: "a job with 3
-stages means the plan had 2 shuffles."
+For "Why is Spark lazy?", say: Spark waits so Catalyst can optimize the whole plan, pipeline narrow
+operations, push filters and columns down, and avoid unnecessary intermediate materialization.
 
-## Related in this repo
+## Related repo folders/files
 
 - [`01_fundamentals/05-lazy-evaluation-and-dag.md`](../01_fundamentals/05-lazy-evaluation-and-dag.md)
 - [`01_fundamentals/02-job-stage-task.md`](../01_fundamentals/02-job-stage-task.md)
-- [`01_fundamentals/diagrams/dag-lifecycle.mmd`](../01_fundamentals/diagrams/dag-lifecycle.mmd) and
-  [`job-stage-task.mmd`](../01_fundamentals/diagrams/job-stage-task.mmd)
-- [`14_spark_ui_lab/01_jobs_stages_tasks.md`](../14_spark_ui_lab/01_jobs_stages_tasks.md) — see this diagram live in the UI
+- [`01_fundamentals/examples/03_lazy_eval_demo.py`](../01_fundamentals/examples/03_lazy_eval_demo.py)
+- [`assets/animations/lazy_evaluation_animation.html`](../assets/animations/lazy_evaluation_animation.html)

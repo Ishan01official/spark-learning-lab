@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" role="img" aria-labelledby="title desc">
+  <title id="title">Structured Streaming pipeline</title>
+  <desc id="desc">Structured Streaming reads source offsets, processes micro-batches, updates state, writes to a sink, and checkpoints progress.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1a73e8"/></marker>
+    <style>.box{fill:#fff;stroke:#202124;stroke-width:2;rx:9}.blue{fill:#f8fbff;stroke:#1a73e8;stroke-width:2;rx:9}.state{fill:#fff8e1;stroke:#f29900;stroke-width:2;rx:9}.txt{font:16px Arial,sans-serif;fill:#202124}.small{font:13px Arial,sans-serif;fill:#5f6368}.arrow{stroke:#1a73e8;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke:#1a73e8;stroke-width:2;stroke-dasharray:6 5;fill:none;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect width="900" height="460" fill="#fff"/>
+  <text x="450" y="42" text-anchor="middle" class="txt" font-weight="700">Structured Streaming Pipeline</text>
+  <rect x="50" y="165" width="135" height="75" class="box"/><text x="118" y="196" text-anchor="middle" class="txt">Source</text><text x="118" y="220" text-anchor="middle" class="small">Kafka/files</text>
+  <rect x="245" y="155" width="155" height="95" class="blue"/><text x="323" y="190" text-anchor="middle" class="txt">Micro-batch</text><text x="323" y="215" text-anchor="middle" class="small">trigger interval</text>
+  <rect x="465" y="155" width="155" height="95" class="box"/><text x="543" y="190" text-anchor="middle" class="txt">DataFrame logic</text><text x="543" y="215" text-anchor="middle" class="small">filter/window/agg</text>
+  <rect x="700" y="165" width="145" height="75" class="box"/><text x="773" y="196" text-anchor="middle" class="txt">Sink</text><text x="773" y="220" text-anchor="middle" class="small">Delta/Kafka</text>
+  <rect x="465" y="310" width="155" height="70" class="state"/><text x="543" y="340" text-anchor="middle" class="txt">State store</text><text x="543" y="364" text-anchor="middle" class="small">windows, dedup</text>
+  <rect x="245" y="60" width="155" height="70" class="state"/><text x="323" y="90" text-anchor="middle" class="txt">Checkpoint</text><text x="323" y="114" text-anchor="middle" class="small">offsets, commits</text>
+  <path d="M185 202 H245" class="arrow"/><path d="M400 202 H465" class="arrow"/><path d="M620 202 H700" class="arrow"/>
+  <path d="M543 250 V310" class="arrow"/><path d="M495 310 C440 280,435 245,465 220" class="dash"/>
+  <path d="M323 130 V155" class="dash"/><path d="M323 155 C250 120,250 90,245 90" class="dash"/>
+</svg>

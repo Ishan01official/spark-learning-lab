@@ -4,8 +4,8 @@
 
 The most relatable Spark pain, drawn: 199 tasks done, 1 straggler carrying a boulder, everyone
 waiting. Teaches skew, stragglers, and "median vs max" in one glance. Pairs with
-[diagram 09](../../../diagrams/09_skew_and_broadcast_join.md) and
-[diagram 17](../../../diagrams/17_spark_ui_troubleshooting.md).
+[diagram 08](../../../diagrams/08_skew_and_broadcast_join.md) and
+[diagram 16](../../../diagrams/16_spark_ui_debugging.md).
 
 ## Final image-generation prompt
 

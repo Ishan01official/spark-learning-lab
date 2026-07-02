@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" role="img" aria-labelledby="title desc">
+  <title id="title">Lazy evaluation</title>
+  <desc id="desc">Spark transformations build a plan; an action triggers execution.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1a73e8"/></marker>
+    <style>.card{fill:#fff;stroke:#202124;stroke-width:2;rx:8}.action{fill:#fff5f5;stroke:#d93025;stroke-width:2;rx:8}.job{fill:#f8fbff;stroke:#1a73e8;stroke-width:2;rx:8}.txt{font:16px Arial,sans-serif;fill:#202124}.small{font:13px Arial,sans-serif;fill:#5f6368}.arrow{stroke:#1a73e8;stroke-width:3;fill:none;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect width="900" height="420" fill="#fff"/>
+  <text x="450" y="42" text-anchor="middle" class="txt" font-weight="700">Lazy Evaluation</text>
+  <text x="215" y="88" text-anchor="middle" class="small">Transformations build a recipe</text>
+  <rect x="55" y="125" width="120" height="70" class="card"/><text x="115" y="166" text-anchor="middle" class="txt">read</text>
+  <rect x="205" y="125" width="120" height="70" class="card"/><text x="265" y="166" text-anchor="middle" class="txt">filter</text>
+  <rect x="355" y="125" width="120" height="70" class="card"/><text x="415" y="166" text-anchor="middle" class="txt">select</text>
+  <rect x="505" y="125" width="120" height="70" class="card"/><text x="565" y="166" text-anchor="middle" class="txt">groupBy</text>
+  <rect x="675" y="112" width="140" height="96" class="action"/><text x="745" y="152" text-anchor="middle" class="txt" font-weight="700">ACTION</text><text x="745" y="178" text-anchor="middle" class="small">write/count/show</text>
+  <path d="M175 160 H205" class="arrow"/><path d="M325 160 H355" class="arrow"/><path d="M475 160 H505" class="arrow"/><path d="M625 160 H675" class="arrow"/>
+  <path d="M745 208 C745 255,690 275,625 292" class="arrow"/>
+  <rect x="300" y="280" width="330" height="72" class="job"/>
+  <text x="465" y="312" text-anchor="middle" class="txt" font-weight="700">Execution starts as a Spark job</text>
+  <text x="465" y="337" text-anchor="middle" class="small">DAG -> stages -> tasks</text>
+  <text x="270" y="232" text-anchor="middle" class="small" fill="#1a73e8">no cluster work yet</text>
+</svg>

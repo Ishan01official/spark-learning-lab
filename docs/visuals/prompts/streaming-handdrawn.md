@@ -4,8 +4,8 @@
 
 De-mystify streaming: it's not a firehose, it's a conveyor belt delivering small trays of new data
 to the same kitchen, with a bookmark saving progress. Pairs with
-[diagram 12](../../../diagrams/12_streaming_pipeline.md) and
-[diagram 13](../../../diagrams/13_watermark_checkpoint_flow.md).
+[diagram 12](../../../diagrams/12_structured_streaming.md) and
+[diagram 13](../../../diagrams/13_watermark_and_checkpointing.md).
 
 ## Final image-generation prompt
 
