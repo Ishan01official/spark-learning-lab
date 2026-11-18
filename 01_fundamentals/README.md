@@ -24,6 +24,19 @@ This is also the heaviest-weighted area on the **Databricks Associate Developer*
 6. [`06-narrow-vs-wide-transformations.md`](./06-narrow-vs-wide-transformations.md) — The single most important performance distinction.
 7. [`07-actions-vs-transformations.md`](./07-actions-vs-transformations.md) — What actually triggers computation.
 
+## Architecture notebook
+
+Open [`notebooks/01_spark_architecture_lab.ipynb`](./notebooks/01_spark_architecture_lab.ipynb)
+for a 45–60 minute guided lab: predict → run → inspect Spark UI → explain aloud.
+It includes an embedded architecture diagram, synthetic orders, input partitions,
+narrow transformations, shuffle, task concurrency, caching, bounded collection,
+and a revision quiz. No external data or credentials are needed.
+
+Import the notebook into Databricks or open it in local Jupyter using the repository
+environment. Classic compute exposes the fullest Spark UI and optional RDD process
+probe; serverless/Connect can restrict introspection, caching, and settings. Local
+mode illustrates parallel tasks on one machine, not a multi-machine deployment.
+
 ## Examples
 
 - [`examples/01_rdd_basics.py`](./examples/01_rdd_basics.py)
